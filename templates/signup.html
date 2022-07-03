@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign Up</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Diplomata+SC&family=Kdam+Thmor+Pro&family=Libre+Baskerville&family=Oldenburg&display=swap" rel="stylesheet">
+        <link href="/static/signup.css" rel="stylesheet">
+    </head>
+    <body>
+        <div style="display:flex;">
+            <div class="infobox">
+                <h1 style="font-size:4vw;position:relative;top:40%;left:20%">STU<span style="font-family:Oldenburg; color: yellow;">PACT</span></h1>
+                <p>For Students,By Students</p>
+            </div>
+            <div style="position:absolute;left:55.5vw;top:5vh;text-align:center;width:30vw;" id="error"></div>
+        <div class="signinbox">
+            <h2 style="text-align:center;margin-top:1vh;color: rgb(1, 1, 31);color:rgb(2, 12, 48);">One step away from joining our family</h2>
+        
+            <form style="margin-top:3vh;" method="post">  
+                {% csrf_token %}
+            <div class="innergrid">
+            
+        <input  required type="text" name="fname" placeholder="First name" value={{firstname}}>
+        <input required type="text" name="lname" placeholder="Last name" value={{lastname}} >
+        <input required type="email" name="email"  placeholder="Email address" value={{email}} >
+        <input required type="username" name="username" placeholder="Username" value={{username}}>
+        <input type="password" name="password" placeholder="Password" >
+        <input type="password" name="confirm" placeholder="Confirm password">
+        <select name="faculty" id="faculty-select">
+            <option value="none">--Select your faculty--</option>
+            <option value="BCT">BCT</option>
+            <option value="BME">BME</option>
+            <option value="BCE">BCE</option>
+            <option value="BEI">BEI</option>
+            <option value="BGE">BGE</option>
+            <option value="BEL">BEL</option>
+        </select>
+        <select name="batch" id="batch-select">
+            <option value="">--Select your batch--</option>
+            <option value="074">074</option>
+            <option value="075">075</option>
+            <option value="076">076</option>
+            <option value="077">077</option>
+            <option value="078">078</option>
+        </select>
+        <input type="submit" value="Sign Up">
+        <h3 id="h2">Already got an account?</h3>
+    
+        <input type="submit" value="Login" id="log">
+        </div>
+    </form>
+        </div>
+    </body><script>
+        if error!=""{
+        var val1=document.createElement("p");
+        var text=document.createTextNode("{{error}}");
+        val1.appendChild(text);
+        val1.setAttribute("class","err");
+        document.getElementById("error").appendChild(val1)
+        setTimeout(() => {  
+            document.getElementById("error").innerHTML=""
+         }, 4000);}
+    </script>
+</html>

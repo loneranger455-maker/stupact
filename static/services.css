@@ -1,0 +1,84 @@
+@keyframes animate1 {
+    0%{
+        display: none;
+    }
+    100%{
+    display:block;
+}
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.services{
+    padding-top: 2.5vh;
+    padding-left: 1vw;
+   
+    display: grid;
+    row-gap: 1.5vw;
+    grid-template-columns: 30vw 30vw 30vw;
+    grid-template-rows: 38vh 38vh;
+    column-gap: 3vw;
+    background-image: linear-gradient(to bottom right ,rgb(212, 215, 219),rgb(1, 4, 10));
+    /* background-image: url("body.png");
+    background-size: cover; */
+    height: 85vh;
+    width: 100vw;
+}
+.services >div{
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    transition: 0.5s ease-in;
+}
+.services >div:hover {
+    background-color: rgb(6, 97, 97);  
+}
+.services >div:hover .insd{
+    display: none;
+}
+.services >div:hover p{
+    display: block;
+   
+}
+.services > div>p{
+    padding-right: 1.5vw;
+    font-size: 2vw;
+    position: absolute;
+    font-family:Archivo Narrow;
+    top: 5vh;
+    left: 3vw;
+    display: none;
+}
+
+.services >div h1{
+    text-align: center;
+    position: relative;
+    top: 6vh;
+}
+.services >div img{
+    position: relative;
+    left: 8.5vw;
+    top: 4vh;
+    height: 22vh;
+    width: 12vw;
+}
+.services .our_service{
+    
+    /* background-size: cover; */
+grid-column: 1;
+grid-row: 1 / 3;
+background-color: rgba(255, 255, 255, 0);
+
+text-align: center;
+
+}
+
+.our_service >h1{
+    position: relative;
+    font-size: 4vw;
+    color:rgb(3, 24, 116);
+    margin-top: 20vh;
+font-family: Oldenburg;
+}

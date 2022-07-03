@@ -1,0 +1,52 @@
+{% include "navbar.html" %}
+<link rel="stylesheet" href="/static/user.css">
+        <div class="bodybox">
+           
+            {% if image == "" %}
+            <img src="/static/user.png">
+            {% else %}
+            <img src="/media/{{image}}">
+            {% endif %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="img"><h2 style="display:inline;">Change Profile Picture</h2></label>
+                <br>
+                <input type="file" id="img" name="img" >
+                <br>
+                <input type="submit">
+              </form>
+              
+            
+            <div class="biobox">
+                <h2>Name:<span>{{name}}</span></h2>
+                <h2>Username:<span>{{username}}</span></h2>
+                <h2>Email:<em>{{email}}</em></h2>
+                <h2>Faculty:<span>{{faculty}}</span></h2>
+
+
+            </div>
+            <div class="buttons">
+            <button id="bio">Modify details</button> 
+            <button id="bio">Change password</button> 
+            </div>
+            <button id="logout" onclick="location.href='{% url 'logout' %}'"><i class="fa fa-sign-out" style="font-size:30px"></i></button>
+        </div>
+    </body>
+    {% comment %} <script>
+        function logout(){
+            var popup=document.createElement('div');
+            var h1=document.createElement('h1');
+            h1.innerHTML="Are you sure you want to logout?";
+            var but1=document.createElement('button');
+            but1.onclick="{% url 'logout' %}";
+            but1.innerHTML="Logout";
+            var but2=document.createElement('button');
+            but2.onclick="{% url 'userbio' %}";
+            but2.innerHTML="Cancel";
+            popup.appendChild(h1);
+            popup.appendChild(but1);
+            popup.appendChild(but2);
+            document.
+        }
+    </script> {% endcomment %}
+    </html>

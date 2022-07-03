@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    overflow: hidden;
+}
+
+.navbar{
+    background-image: linear-gradient(to bottom,rgb(66, 1, 66),rgb(0, 1, 19));
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 15vh;
+    width: 100vw;
+ 
+}
+.navbar > p{
+    padding: 15px 0 0 15px;
+    display: inline-block;
+    color: white;
+    font-size: 26px;
+}
+.middle{
+    display:inline-flex;
+    position: relative;
+    left:20vw;
+    width: 40vw;
+    justify-content: space-between;
+   
+
+}
+.normal{
+    text-decoration: none;
+    color:white;
+   
+}
+.navbar > .right{
+display: inline-flex;
+position: fixed;
+right: 3vw;
+top: 17px;
+
+}
+.right >button{
+    background-color: rgb(3, 24, 116);
+    border-radius: 20px;
+    height: 5vh;
+    width: 6vw;
+    border: 0px;
+    position: relative;
+    right: 1vw;
+    color: white;
+}
+.activate{
+    text-decoration:none;
+    color: crimson;
+    }

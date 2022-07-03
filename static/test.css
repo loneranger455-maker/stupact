@@ -1,0 +1,162 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+img {
+    height: 25vh;
+    width: 100vw;
+    margin:0px;
+}
+
+.child {
+    position: absolute;
+    top: 40vh;
+    left: 60%;
+    width: 30vw;
+}
+
+#a {
+    font-family: 'Oldenburg', cursive;
+    margin: 7% 0% 0% 5%;
+    font-size: 3vw;
+    border: 1% solid black;
+}
+
+#b {
+    font-size: 2vw;
+    margin: 5% 0% 0% 5%;
+    border: 1% solid black;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+form {
+    width: 75%;
+    height: 100%;
+    border-radius: 1vw;
+    box-shadow: 5px 5px 10px grey;
+}
+
+form p {
+    margin: 5% 0% 0% 0%;
+    text-align: center;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+input[type=text],
+input[type=password] {
+    margin: 5% 0% 0% 5%;
+    border-radius: 1vw;
+    padding: 3%;
+    width: 83%;
+    border: 2px solid purple;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+input[type=text]:hover,
+input[type=password]:hover {
+    border: 2px solid orangered;
+}
+
+input[type=text]::-webkit-input-placeholder,
+input[type=password]::-webkit-input-placeholder {
+    text-align: center;
+}
+
+input[type=submit] {
+    margin: 5% 0% 0% 5%;
+    padding: 3%;
+    border-radius: 1vw;
+    width: 90%;
+    border: 2px solid purple;
+    color: white;
+    background-color: purple;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+.child2{
+    margin-left: 20%;
+}
+button {
+    margin: 5% 0% 5% 25%;
+    height: 6vh;
+    width: 8vw;
+    text-align: center;
+    font-size:12px;
+    border-radius: 1vw;
+    width: 50%;
+    border: 2px solid purple;
+    color: white;
+    background-color: purple;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+input[type=submit]:hover,
+button:hover {
+    border: 2px solid orangered;
+    color: white;
+    background-color: orangered;
+}
+
+#a span {
+    background-color: purple;
+    border-radius: 1vw;
+    padding: 1%;
+    color: yellow;
+}
+a{
+    color:blue;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration:underline;
+}
+.svgbuttom{
+    display: none;
+    position: absolute;
+    bottom:0px;
+}
+@media only screen and (max-width: 600px){
+.svgbuttom{
+    display: inline-block;
+    margin:0;
+}
+#a{
+    
+    margin:15vh 0% 0% 22%;
+    font-size: 5vw;
+}
+#b{
+    font-size: 2.5vw;
+}
+.child{
+    margin:4% 0% 0% 0%;
+    position: absolute;
+    width: 80vw;
+    top:40vh;
+    left:20vw;
+    
+}
+.child2{
+    position: absolute;
+    left:2vw;
+    top:12vh;
+}
+button{
+    font-size: 12px;
+}
+}
+.tick,.cross{
+    display:inline-block;
+    position:absolute;
+    top: 3.5vh;
+    right: 9vw;
+
+}
+.cross{
+    top:13.2vh;
+}

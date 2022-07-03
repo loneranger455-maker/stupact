@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    /* background-image: linear-gradient(to bottom,rgb(28, 8, 32),rgb(0, 0, 0)); */
+    background-color: rgb(12, 44, 44);
+    background-size: cover;
+    min-height: 100vh;
+}
+.navbar{
+    background-image: linear-gradient(to bottom,rgb(66, 1, 66),rgb(0, 1, 19));
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 15vh;
+    width: 100vw;
+ 
+}
+.navbar > p{
+    padding: 15px 0 0 15px;
+    display: inline-block;
+    color: white;
+    font-size: 26px;
+}
+.middle{
+    display:inline-flex;
+    position: relative;
+    left:20vw;
+    width: 40vw;
+    justify-content: space-between;
+   
+
+}
+.middle > a{
+    text-decoration: none;
+    color:white;
+}
+.navbar > .right{
+display: inline-flex;
+position: fixed;
+right: 3vw;
+top: 17px;
+
+}
+.right >button{
+    background-color: rgb(3, 24, 116);
+    border-radius: 20px;
+    height: 5vh;
+    width: 6vw;
+    border: 0px;
+    position: relative;
+    right: 1vw;
+    color: white;
+}
+.bodybox{
+    background-color: rgba(255, 255, 255, 0.295);
+    height: 70vh;
+    width: 70vw;
+    border-radius: 40px;
+    left: 15vw;
+    top: 8vh;
+    position: relative;
+}
+.bodybox > img{
+    position: relative;
+    border-radius: 50%;
+    top: 9vh;
+    left: 5vw;
+    height: 18vw;
+    width: 19vw;
+
+} 
+
+.biobox{
+    display: flex;
+    height: 30vh;
+    justify-content: space-between;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+}
+#bio{
+    top: 57vh;
+}
+form{
+    position: relative;
+    top: 11vh;
+    left:8vw;
+    
+}
+form > input{
+    
+    font-size: medium;
+    margin-top: 2vh;
+ 
+}
+form>input[type="submit"]{
+    height: 4vh;
+    width: 6vw;
+    border-radius: 20px;
+    background-color:rgb(2, 2, 26);
+    
+    color: white;
+    margin-top: 1.5vh;
+    border:0;
+}
+.buttons{
+    display:flex;width:27vw;justify-content:space-between;
+    position:absolute;
+    top:75%;
+    left: 35vw;
+}
+.buttons > button{
+   
+    height: 6vh;
+    font-size: 1.2vw;
+    width: 13vw;
+    border:0;
+    border-radius: 20px;
+    background-color: rgb(9, 9, 85);
+    color:white;
+   
+} 
+#logout{
+    position:absolute;
+    left: 90%;
+    top:4%;
+    height:42px;
+    width: 42px;
+    border: 0;
+    color: white;
+    background-color: rgba(2, 2, 27, 0.719);
+    border-radius:50%;
+}
+#logout:hover{
+    background-color: orangered;
+}
+.buttons>button:hover{
+    background-color: orangered;
+}
+.biobox >h2{
+   
+    color: black;
+}
+.biobox span{
+    color: rgb(4, 4, 32);
+    font-family:Gentium Book Plus;
+    margin-left: 5px;
+}
+em{
+    margin-left: 5px;
+    color: rgb(4, 4, 32);
+}

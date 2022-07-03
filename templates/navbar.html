@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>STUPACT</title>
+       <link rel="stylesheet" href="/static/navbar.css">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus&family=Oldenburg&display=swap" rel="stylesheet">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="navbar">
+            <p>STU<span style="color: yellow;font-family: Oldenburg;">PACT</span></p>
+            <div class="middle">
+                <a href="{% url 'home' %}" class= {% if request.path == "/home/" %}"activate" {% else %} "normal" {% endif %}>Home</a>
+                <a href="{% url 'servicestab' %}" class={% if request.path == "/services/" %}"activate" {% else %} "normal"{% endif %}>Services</a>
+                <a class="normal" >Stu Mart</a>
+                <a class="normal">Events</a>
+            </div>
+            <div class="right">
+                <button>Contact</button>
+             
+                <img src={{request.session.image}} style="border-radius:50%;height: 30px;width:30px;float: right;"
+                onclick="location.href='{% url 'userbio' %}'">
+            </div>
+          
+        </div>
