@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/loginfinal.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lobster+Two&family=Pacifico&family=Patrick+Hand&family=Poppins&display=swap"
+        rel="stylesheet">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="screen">
+        <img src="/static/strip.png" alt="" class="strip">
+        <div class="box">
+            <div style="position:absolute;left:56vw;top:10vh" id="error"></div>
+            <div class="mid">
+                <div class=" logo">
+                <p class="text">
+                    <a style="color:purple;font-family: 'Pacifico', cursive;">Stu</a><a
+                        style="color:teal;font-family: 'Pacifico', cursive;">PACT</a>
+                </p>
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="head">
+                    Login
+                </div>
+                <div class="username">
+                  
+                {% if sym1 == "✔" %}
+                    <input type="text"  name="username" placeholder="Username"  autofocus value={{username}}><div class="tick"><span style="background-color:white;color:green;float:right;">{{sym1}}</span></div>
+                    {% else %}
+                    <input type="text"  name="username" placeholder="Username"  autofocus value={{username}}><div class="tick"><span style="background-color:white;color:red;float:right;">{{sym1}}</span></div>
+                    {% endif %}
+
+                </div>
+                <div class="password">
+                    <input type="password" name="password" placeholder="Password"><div class="cross"><span style="background-color:white;color:red;float:right;">{{sym2}}</span></div>
+                </div>
+                <div class="login">
+                    <button type="submit">LOGIN</button>
+                </div>
+                <div class="forget">
+                    Forget Username / Password?
+                </div>
+                <div class="create" ><a href="{% url 'signup' %}">
+                    Create your Account
+                </a></div>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    var val1=document.createElement("p");
+    var text=document.createTextNode("{{error}}");
+    
+    val1.appendChild(text);
+    val1.setAttribute("class","err");
+    document.getElementById("error").appendChild(val1)
+    setTimeout(() => {  
+        document.getElementById("error").innerHTML=""
+     }, 4000);
+</script>
+</html>

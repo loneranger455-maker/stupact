@@ -1,0 +1,100 @@
+{% include "navbar.html" %}
+<link rel="stylesheet" href="/static/orderproduct.css">
+    <div  class="order">
+        <div class="left-div">
+           
+            <center><h1>Complete the following details</h1></center>
+            <form style="margin-top:3vh;" method="post">  
+                {% csrf_token %}
+            <div class="innergrid">
+                
+        <input  required type="text" name="fname" placeholder="First name" value={{firstname}}>
+        <input required type="text" name="lname" placeholder="Last name" value={{lastname}} >
+        <input type="tel" id="phone" name="phone"  placeholder="Phonenumber">
+        <select name="region" id="region-select">
+            <option value="none">--Select your nearest region--</option>
+            <option value="hostel">Hostel</option>
+            <option value="bagar">Bagar</option>
+            <option value="lamachaur">Lamachaur chowk</option>
+            <option value="prithivi">Prithivi Chowk</option>
+            
+        </select>
+        <select name="faculty" id="faculty-select">
+            <option value="none">--Select your faculty--</option>
+            <option value="BCT">BCT</option>
+            <option value="BME">BME</option>
+            <option value="BCE">BCE</option>
+            <option value="BEI">BEI</option>
+            <option value="BGE">BGE</option>
+            <option value="BEL">BEL</option>
+        </select>
+        <select name="batch" id="batch-select">
+            <option value="">--Select your batch--</option>
+            <option value="074">074</option>
+            <option value="075">075</option>
+            <option value="076">076</option>
+            <option value="077">077</option>
+            <option value="078">078</option>
+        </select>
+        
+        <div class="paymethod">
+            <h2 style="margin-top:2.5vh;margin-left: 2vw;">Payment Method:</h2>
+        <div style="margin-top:0.25vh;">
+            <input type="radio" name="payment" value="esewa">
+        <img style="height:2.5vw;width:10vw;margin: 0.25vh 0 0.25vh 0;" src="/static/eSewa-logo.png">
+        </div>
+        <div>
+        <input type="radio"  name="payment" value="cod">
+        <img style="height:3vw;width:8vw" src="/static/cashondelivery.jpg">
+        </div>
+        
+
+       
+</div>
+        <input type="submit" value="Place Order"></div>
+     </form>
+        </div>
+        <div class="right-div">
+            <div class="totalcost">
+                <h1>Order Summary:</h1><br>
+                <p>Product Cost:</p><span>Rs.{{object.price}}</span><br><br>
+                <p style="margin:2vh 0vh;">Delivery Charge:</p><span id="delivery">Rs.50</span><br><br><hr>
+                <p>Total Cost:</p><span id="total">Rs:{{object.price|add:50}}</span>
+            </div>
+            <div class="singleitem">
+                <div id="itemselected">
+                    <h1 style="font-family:Patrick Hand;">Item Selected:</h1>
+                    <button onclick="location.href='{% url 'stumart' %}'">Cancel order</button>
+                </div>
+                
+                <div id="product">
+                <img style="height:8vw;width:8vw;border-radius:12px 12px 0px 0px;" src="/media/{{object.image}}">
+                <div id="details2">
+                <h1>{{object.title}}</h1>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("region-select").addEventListener("change",(event)=>{
+        var value=document.getElementById("region-select").value;
+        var price=0
+        console.log(value)
+        if(value=="hostel"){
+            document.getElementById("delivery").innerHTML="Free";
+            price=0;
+              }
+        else if(value=="lamachaur"){
+            document.getElementById("delivery").innerHTML="Rs.20";
+            price=20;
+        }
+        else{
+            document.getElementById("delivery").innerHTML="Rs.50";
+        price=50;}
+        const ans={{object.price}}+price;
+        document.getElementById("total").innerHTML="Rs:"+ans;
+    })
+</script>
+</html>

@@ -1,0 +1,37 @@
+{% include "navbar.html" %}
+{% include 'stumart/topbar.html' %}
+<section style="display:flex;width:88vw;height:75vh;margin-left: 6vw;justify-content: space-between;">
+    <div class="buyerhistory">
+        <div class="purchbox">
+            <center><h1 style="margin-top:2vh;">Purchase history</h1></center>
+        {% for i in buyer %}
+        <div class="history">
+            <h1>{{i.title}}</h1>
+            <span>Product price:{{i.price}}</span>
+            <span>delivery charge:{{i.delivery_charge}}</span>
+            <br>
+            <span>shipping address:{{i.region}}</span>
+            <span style="float:right;color:green;">{{i.status}}</span>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="buyerhistory">
+    <div class="purchbox">
+        <center><h1 style="margin-top:2vh;">Sell history</h1></center>
+        {% for i in seller %}
+        <div class="history">
+            <h1>{{i.title}}</h1>
+            <span>Product price:{{i.price}}</span>
+            <span>delivery charge:{{i.delivery_charge}}</span>
+            <br>
+            <span>shipping address:{{i.region}}</span>
+            <span style="float:right;color:green;">{{i.status}}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+
+</main>
+</html>

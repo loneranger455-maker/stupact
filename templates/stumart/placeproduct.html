@@ -1,0 +1,57 @@
+{% include 'navbar.html' %}
+{% include 'stumart/topbar.html' %}
+<div class="placeitem">
+    <div class="left-part">
+        <div id="imagecontainer">
+            <img id="imageofproduct"  style="border-radius: 12px;"src="/media/stumart/temp/noproduct.png">
+        </div>
+    </div>
+    <div class="right-part">
+        <div>
+            <form style="display:flex;flex-direction:column;" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="choose_image">
+                    <p style="font-size:25px;margin-bottom:2vh;">Choose product image</p>
+                    <input type="file" id="img" name="image">
+                </div>
+                <input type="text" placeholder="Title" name="title">
+                <input type="text" placeholder="Price" name="price">
+                <select name="category" id="product-category" name="category">
+                    <option value="none">--Select the product category--</option>
+                    <option value="book">Books</option>
+                    <option value="notes">Notes</option>
+                    <option value="fur">Furniture</option>
+                    <option value="draw">Drawing tools</option>
+                    <option value="others">Others</option>
+                </select>
+                <textarea name="textbox" cols="40" rows="5" placeholder="About Product"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+    var getimagepath = document.getElementById("img");
+    console.log(getimagepath);
+    getimagepath.addEventListener('change', function () {
+        const reader = new FileReader();
+        reader.onload = function () {
+            const img = new Image;
+            img.src = reader.result;
+            document.getElementById("imageofproduct").remove();
+            img.setAttribute("id", "imageofproduct");
+            document.getElementById("imagecontainer").appendChild(img);
+
+        }
+        reader.readAsDataURL(getimagepath.files[0])
+    })
+    {% comment %} function placeproduct() {
+        document.getElementsByClassName("items")[0].style.display = "none"
+        document.getElementsByClassName("placeitem")[0].style.display = "flex"
+
+    } {% endcomment %}
+</script>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --font: 'Patrick Hand';
+}
+
+body {
+    /* background: url(nice.webp); */
+    background-color: thistle;
+}
+
+
+.topbar {
+    background-color: rgba(255, 255, 255, 0.24);
+    display: flex;
+    align-items: center;
+    margin-top: 3vh;
+    border-radius: 15px;
+    height: 12vh;
+    width: 88vw;
+    margin-left: 6vw;
+}
+
+.topbar>button {
+    height: 5vh;
+    width: 10vw;
+    border-radius: 10px;
+    border: 0px;
+    margin-left: 5vw;
+}
+
+form {
+    width: 43%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.topbar input[type=text] {
+    padding: 0.6vh 1vw 0.6vh 1vw;
+    font-size: 1vw;
+    height: 5vh;
+    box-sizing: border-box;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+    border: 0px;
+}
+
+.topbar input[type=text]::placeholder {
+    text-align: center;
+}
+
+.topbar input[type=text]:focus {
+    outline: none;
+}
+
+.topbar button[type=submit] {
+
+    height: 5vh;
+    width: 3vw;
+    background-color: white;
+    border: transparent;
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: white;
+}
+
+.items {
+
+    position: relative;
+    left: 3vw;
+    width: 94vw;
+    top: 3vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.items>div {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 19.75vw;
+    background-color: rgba(255, 255, 255, 0.24);
+    border-radius: 12px;
+    margin-left: 3vw;
+    margin-top: 6vh;
+}
+
+.singleitem,
+#details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.singleitem:hover #details {
+    display: none;
+}
+
+.butt {
+    display: none;
+    padding-top: 2vh;
+    background-color: rgba(152, 156, 175, 0.425);
+    height: 5vh;
+    border-radius: 30px;
+    width: 8vw;
+    text-align: center;
+}
+
+.singleitem:hover .butt {
+
+    display: inline-block;
+}
+
+.butt:hover {
+    background-color: darkslateblue;
+    color: wheat;
+}
+
+.placeitem {
+    display: flex;
+    height: 66vh;
+    width: 88vw;
+    background-color: rgba(255, 255, 255, 0.24);
+    border-radius: 12px;
+    margin-left: 6vw;
+    margin-top: 6vh;
+}
+
+.placeitem img {
+    height: 17vw;
+    width: 17vw;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.left-part {
+    width: 40%;
+    margin-left: 4vw;
+}
+
+.left-part form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: -10vh;
+}
+
+.left-part form>input[type="file"] {
+  
+    font-size: medium;
+    position: relative;
+    left: 4vw;
+}
+
+.left-part form>input[type=submit] {
+    background-color: lightpink;
+    color: black;
+    border: 0px;
+    font-size: large;
+    height: 5vh;
+    width: 7vw;
+    margin-top: 2vh;
+
+}
+
+.right-part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+}
+
+.right-part>div {
+    margin-top: 4vh;
+    margin-left: 8vw;
+}
+
+.right-part form input[type=text],
+select {
+    padding-left: 1vw;
+    border-radius: 12px;
+    height: 8vh;
+    width: 28vw;
+    border: 0px;
+    font-size: large;
+    margin-top: 2vh;
+    margin-left: 10vw;
+
+}
+.right-part form input[type=text]:focus,select:focus{
+    border: 0px;
+    outline: 2px solid purple;
+}
+.right-part textarea{
+    border-radius: 12px;
+    padding-left: 1vw;
+    padding-top: 1vh;
+}
+.right-part textarea:focus{
+    border: 0px;
+    outline:2px solid purple;
+}
+.right-part form input[type=text]::placeholder{
+    text-align: center;
+}
+.right-part form select{
+    text-align: center;
+}
+
+.right-part form input[type=submit] {
+    background-color: rgba(146, 140, 140, 0.514);
+    border-radius: 12px;
+    border: 0px;
+    height: 5vh;
+    width: 10vw;
+  
+    margin-top: 3vh;
+    margin-left: 10vw;
+}
+
+.right-part form input[type=submit]:hover
+{
+    cursor: pointer;
+    background-color: crimson;
+    color:white;
+}
+textarea {
+    margin-top: 3vh;
+    margin-left: 10vw;
+}
+
+/*.right-part form select{
+    height: 8vh;
+    width: 20vw;
+    border: 0px;
+    font-size: medium;
+    margin-top: 2vh;
+} */
+.choose_image {
+    border-radius: 12px;
+    position: absolute;
+    left: 10vw;
+    bottom:12vh;
+}
+
+.buyerhistory,
+.sellerhistory {
+    display: flex;
+    flex-direction: column;
+
+    width: 49%;
+
+    height: 100%;
+
+}
+
+.purchbox {
+    width: 43vw;
+    height: 68vh;
+    margin-top: 5%;
+    background-color: rgba(255, 255, 255, 0.356);
+    border-radius: 20px;
+}
+
+.history {
+    border-radius: 20px;
+    padding: 1vh 1vw 1vh 1vw;
+    margin: 1vh 0.8vw 0 0.8vw;
+    background-color: rgba(245, 245, 245, 0.452);
+}
+.left-part #imagecontainer{
+    margin-top: 11vh;
+}
+input::file-selector-button {
+    font-weight: bold;
+    color: dodgerblue;
+    padding: 0.5em;
+    border: transparent;
+    border-radius: 10px;
+}
+
+textarea::placeholder{
+    text-align: center;
+}
+
+#imageofproduct{
+    border-radius: 12px;
+}

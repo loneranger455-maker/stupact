@@ -1,0 +1,15 @@
+{% include 'navbar.html' %}
+{% include 'stumart/topbar.html' %}
+<section class="items">
+    {% for i in itemlist %}
+    <div class="singleitem">
+        <img style="height:16vw;width:16vw;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
+        <div id="details2">
+        <h1>{{i.title}}</h1>
+        <h3>Rs:{{i.price}}</h3>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+</body>
+</html>

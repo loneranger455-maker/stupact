@@ -1,0 +1,181 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(45deg, rgba(82, 90, 210,0.5), rgba(195, 90, 190,0.5));
+}
+
+.screen {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    height: 86.1%;
+    width: 62.5%;
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mid {
+    height: 75%;
+    width: 75%;
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 7px 7px 7px grey;
+}
+
+form {
+    width: 40%;
+    margin: 0% 5.5% 0% 0%;
+}
+
+.logo {
+    height: 100%;
+    width: 49%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 7px 7px 7px grey;
+    background-color: thistle;
+}
+
+.strip {
+    height: 65%;
+    width: 3%;
+    position: relative;
+    left: 9.5%;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Special Elite', cursive;
+    font-size: 3.5vw;
+    color: black;
+}
+
+.head,
+.forget,
+.create {
+    text-align: center;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 6% 0% 6% 15%;
+    border-radius: 25px;
+    border: transparent;
+    outline: 2px solid #57b846;
+    font-size: 1vw;
+}
+
+.head {
+    margin-bottom: 15%;
+    font-weight: 900;
+    font-size: 1.5vw;
+}
+
+button {
+    width: 100%;
+    padding: 6%;
+    border-radius: 25px;
+    border: transparent;
+    margin-top: 2%;
+    font-weight: 900;
+    color: white;
+    background-color: #57b846;
+    font-size: 1vw;
+}
+
+.forget {
+    color: green;
+    margin-top: 5%;
+    font-size: 1vw;
+}
+
+.create {
+    color: teal;
+    margin: 15% 0% 0% 0%;
+    font-size: 1vw;
+}
+
+input[type=text],
+input[type=password] {
+    text-align: left;
+    margin: 2% 0%;
+}
+
+input:focus {
+    outline: none;
+    border: transparent;
+    outline: 2px solid orangered;
+    box-shadow: 0 0 10px orangered;
+}
+
+input:hover {
+    outline: 2px solid orangered;
+}
+
+button:hover {
+    background-color: orangered;
+    cursor: pointer;
+}
+
+.create:hover,
+.forget:hover {
+    text-decoration: underline;
+    color: orangered;
+    cursor: pointer;
+}
+
+input[type=text] {
+    background: url(user.svg);
+    background-size: 8.5%;
+    background-position: 4% 50%;
+    background-repeat: no-repeat;
+}
+
+input[type=password] {
+    background: url(lock.svg);
+    background-size: 8%;
+    background-position: 5% 50%;
+    background-repeat: no-repeat;
+}
+.err{
+    display:block;
+    font-size: 1.5vw;
+    background-color: white;
+    width: 15vw;
+    color:crimson;
+    text-align: center;
+    border-radius:20px;
+}
+.tick,.cross{
+    font-size: 1.5vw;
+    display:inline-block;
+    position:absolute;
+    top: 37vh;
+    right: 28.5vw;
+
+}
+.cross{
+    top:46.3vh;
+}

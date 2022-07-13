@@ -1,0 +1,15 @@
+<title>StuMart</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/stumart.css">
+<script src="/static/javascript/stumart.js"></script>
+
+    <main>
+<section class="topbar">
+    <button onclick="location.href='{% url 'productmenu' tabvalue='placeproduct' %}'">Place a product</button>
+    <button onclick="location.href='{% url 'productmenu' tabvalue='myproducts' %}'">My products</button>
+    <button onclick="location.href='{% url 'productmenu' tabvalue='purchasehistory' %}'">My activity</button>
+    <form >
+        <input type="text" placeholder="Search" >
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</section>

@@ -1,84 +1,85 @@
-@keyframes animate1 {
-    0%{
-        display: none;
-    }
-    100%{
-    display:block;
-}
-}
-*{
-    margin: 0;
-    padding: 0;
+
+main {
+    height: 91.9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.services{
-    padding-top: 2.5vh;
-    padding-left: 1vw;
-   
-    display: grid;
-    row-gap: 1.5vw;
-    grid-template-columns: 30vw 30vw 30vw;
-    grid-template-rows: 38vh 38vh;
-    column-gap: 3vw;
-    background-image: linear-gradient(to bottom right ,rgb(212, 215, 219),rgb(1, 4, 10));
-    /* background-image: url("body.png");
-    background-size: cover; */
-    height: 85vh;
-    width: 100vw;
-}
-.services >div{
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 30px;
-    transition: 0.5s ease-in;
-}
-.services >div:hover {
-    background-color: rgb(6, 97, 97);  
-}
-.services >div:hover .insd{
-    display: none;
-}
-.services >div:hover p{
-    display: block;
-   
-}
-.services > div>p{
-    padding-right: 1.5vw;
-    font-size: 2vw;
-    position: absolute;
-    font-family:Archivo Narrow;
-    top: 5vh;
-    left: 3vw;
-    display: none;
+#head {
+    height: 90%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Fredoka One', cursive;
+    background: url(icons/women.jpeg);
+    background-repeat: no-repeat;
+    background-position:bottom;
+    background-size: 65%;
+    mix-blend-mode: multiply;
+    color:black;
 }
 
-.services >div h1{
+.a {
     text-align: center;
-    position: relative;
-    top: 6vh;
-}
-.services >div img{
-    position: relative;
-    left: 8.5vw;
-    top: 4vh;
-    height: 22vh;
-    width: 12vw;
-}
-.services .our_service{
-    
-    /* background-size: cover; */
-grid-column: 1;
-grid-row: 1 / 3;
-background-color: rgba(255, 255, 255, 0);
-
-text-align: center;
-
-}
-
-.our_service >h1{
-    position: relative;
     font-size: 4vw;
-    color:rgb(3, 24, 116);
-    margin-top: 20vh;
-font-family: Oldenburg;
+}
+
+.b {
+    margin-left: 4%;
+    width: 80%;
+}
+
+#types {
+    position: relative;
+    top:2vh;
+    height: 85%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.first {
+    font-family: 'Nova Round', cursive;
+    font-size: 2vw;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+.first .img{
+    width:5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.first p{
+    font-family: 'Lobster Two', cursive;
+    width:93%;
+}
+
+.second {
+    visibility: hidden;
+    font-size: 1.5vw;
+    text-align: justify;
+    transition: all  0.1s ease-in;
+    color: black;
+    margin-left: 7.2%;
+    font-family: 'Patrick Hand', cursive;
+
+}
+
+.first:hover{
+    color:teal;
+    cursor: pointer;
+}
+
+.first:hover+.second{
+    visibility:visible;
 }

@@ -18,6 +18,8 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',views.login),
@@ -26,7 +28,16 @@ urlpatterns = [
     path('services/',views.services,name="servicestab"),
     path('signup/',views.signup,name="signup"),
     path('user/',views.user,name="userbio"),
-    path('user/logout',views.logout,name="logout")
+    path('user/logout',views.logout,name="logout"),
+    path('stumart',views.stumartfunc,name="stumart"),
+    path('stumart/<str:tabvalue>',views.productmenu,name="productmenu"),
+    path('stumart/order/<uuid:uniquevalue>',views.orderproduct,name="placeorder"),
+    path('notification/',views.notification,name="notification"),
+    path('notificationcount/',views.notificationcount,name="notificationcount"),
+    path('updateinfo/',views.updateinfo,name="updateinfo"),
+
+
+
    
 ]
 if settings.DEBUG:

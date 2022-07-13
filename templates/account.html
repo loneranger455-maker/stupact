@@ -1,0 +1,93 @@
+{% include "navbar.html" %}
+<link rel="stylesheet" href="/static/account.css">
+    <div class="container">
+        <div class="head">
+            <div class="profile">
+                <div class="person">
+                {% if image == "" %}
+            <img src="/static/user.png" id="person" >
+            {% else %}
+            <img src="/media/{{image}}" id="person">
+            {% endif %}
+                </div>
+                <div class="mininfo" style="position:relative;">
+                    <p style="margin-bottom:2%;font-size: 2vw;font-family: 'DM Serif Text', serif;">{{username}}</p>
+                    <p style="margin-bottom:2%; font-style: italic; font-size: 1.2vw;">{{email}}</p>
+                    <form method="post" enctype="multipart/form-data"  >
+                        {% csrf_token %}
+                        <input type="file"  onchange="onpicchange()" name="img" accept="image/*">
+                    
+                        <input style="display: none;" id="submit_photo" type="submit" value=" submit file ">
+                    </form>
+                </div>
+            </div>
+            <div class="extras">
+                <div class="reward">
+                    <img src="/static/reward.svg" alt="" id="reward">
+                    <div style="margin-left: 1vw;">
+                        <p style="font-family: 'Poppins', sans-serif;">Reward</p>
+                        <p style="color:teal;">{{reward}}</p>
+                    </div>
+                   
+                </div>
+                    
+            </div>
+        </div>
+        <div class="body">
+            <div class="info">
+                <div class="block">
+                    <p class="a">First name:</p>
+                    <p class="b">{{object.firstname}}</p>
+                </div>
+                <div class="block">
+                    <p class="a">Last name:</p>
+                    <p>{{object.lastname}}</p>
+                </div> 
+                <div class="block">
+                    <p class="a">Username:</p>
+                    <p>{{username}}</p>
+                </div>
+                <div class="block">
+                    <p class="a">Phone:</p>
+                    <p>{{phonenumber}}</p>
+                </div>
+                <div class="block">
+                    <p class="a">Email:</p>
+                    <p style="font-style: italic ;">{{email}}</p>
+                </div>
+                <div class="block">
+                    <p class="a">College:</p>
+                    <p>WRC</p>
+                </div>
+                <div class="block">
+                    <p class="a">Batch:</p>
+                    <p>{{batch}}</p>
+                </div>
+                <div class="block">
+                    <p class="a">Faculty:</p>
+                    <p>{{faculty}}</p>
+                </div>
+            </div>
+            <div class="main">
+                <div class="store">
+                    <button>My Activities</button>
+                </div>
+                <div class="update" onclick="location.href='{% url 'updateinfo' %}'">
+                    <button>Update Information</button>
+                </div>
+                <div class="change">
+                    <button> Change Password</button>
+                </div>
+                <div class="logout">
+                    <button onclick="location.href='{% url 'logout' %}'"> Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function onpicchange(){
+        document.getElementById("submit_photo").style.display="inline-block";
+    }
+</script>
+</html>

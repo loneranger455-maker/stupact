@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/updateinfo.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="contain">
+        <div class="box">
+            <i onclick="location.href='{% url 'userbio' %}'" style="position: relative;left: 19vw;top:-3vh;font-size:2vw;"class="material-icons">highlight_off</i>
+            <!-- <button style="align-self:flex-start ;margin-left:4vw; border:transparent;
+            border-radius: 12px;">
+             
+            </button> -->
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="abox">
+                    <div class="fname">
+                        <p>First Name</p>
+                        <input type="text" name="firstname" placeholder="Enter Firstname" required value={{firstname}}>
+                    </div>
+                    <div class="lname">
+                        <p>Last Name</p>
+                        <input type="text" name="lastname" placeholder="Enter Lastname" required value={{lastname}}>
+                    </div>
+                </div>
+                <div class="abox">
+                    <div class="email">
+                        <p>Email</p>
+                        <input type="email" name="email" placeholder="Enter Email" required value={{email}}>
+                    </div>
+                </div>
+                <div class="abox">
+                    <div class="username">
+                        <p>Username</p>
+                        <input type="text" name="username" placeholder="Enter Username" value={{username}}>
+                    </div>
+                    <div class="phonenumber">
+                        <p>Phone Number</p>
+                        <input type="number" name="phonenumber" placeholder="Enter Phone Number" required value={{phonenumber}}>
+                    </div>
+                </div>
+                <div class="abox">
+                    <div class="college">
+                        <p>College</p>
+                        <select name="college" id="college" >
+                            <option value="WRC">WRC</option>
+                        </select>
+                    </div>
+                    <div class="batch">
+                        <p>Batch</p>
+                        <select name="batch" id="batch">
+                            <option value="2075">2075</option>
+                            <option value="2076">2076</option>
+                            <option value="2077">2077</option>
+                            <option value="2078">2078</option>
+                        </select>
+                    </div>
+                    <div class="faculty">
+                        <p>Faculty</p>
+                        <select name="faculty" id="faculty" value="{{batch}}">
+                            <option value="BCT">BCT</option>
+                            <option value="BEL">BEI</option>
+                            <option value="BCE">BCE</option>
+                            <option value="BEL">BEL</option>
+                            <option value="BEL">BAME</option>
+                            <option value="BEL">BME</option>
+                            <option value="BEL">BGE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="button">
+                    <button class="security">
+                        Change Password
+                    </button>
+                    <input type="submit" value="Update">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

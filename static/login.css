@@ -9,7 +9,7 @@ body{
 .infobox{
     color:white; 
     width:40vw;height:100vh;
-    background-image: linear-gradient(to bottom,rgb(66, 1, 66),rgb(0, 1, 19));
+    background-image: linear-gradient(to bottom,rgb(177, 34, 93),rgb(0, 0, 0));
 }
 .infobox p{
 font-size: 2vw;
@@ -83,10 +83,11 @@ left: 8vw;
 }
 .err{
     display:block;
-    font-size: 1.5vw;
+    font-size: 1vw;
+    height:10vh;
     background-color: white;
-    width: 15vw;
+    width: 14vw;
     color:crimson;
     text-align: center;
-    border-radius:20px;
+    border-radius:8px;
 }

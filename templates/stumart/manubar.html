@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lobster+Two&family=Pacifico&family=Patrick+Hand&family=Gentium+Book+Plus&family=PT+Sans&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="fab.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <title>Our Services</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="left">
+                <span style="color:purple;">Stu</span>
+                <span style="color:teal;">PACT</span>
+            </div>
+            <div id="center">
+                <a  href="{% url 'home' %}" class= {% if request.path == "/home/" %}"activate" {% else %} "normal" {% endif %}>Home</a>
+                <a href="{% url 'servicestab' %}" class={% if request.path == "/services/" %}"activate" {% else %} "normal"{% endif %}>Services</a>
+                <a href="{% url 'stumart' %}" class={% if request.path == "/stumart" %}"activate" {% else %} "normal"{% endif %}>StuMART</a>
+                <a href="">Events</a>
+            </div>
+            <div id="right">
+                <a id="contact">
+                    Contact
+                </a>
+                <img src={{request.session.image}} style="margin-left:1.5vw;border-radius:50%;height: 30px;width:30px;float: right;"
+                onclick="location.href='{% url 'userbio' %}'">
+            </div>
+        </nav>
+    </header>
+    <title>StuMart</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/stumart.css">
+<script src="/static/javascript/stumart.js"></script>
+
+    <main>
+<section class="topbar">
+    <button onclick="placeproduct()">Place a product</button>
+    <button>My products</button>
+    <button>My activities</button>
+    <form >
+        <input type="text" placeholder="Search" >
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</section>
