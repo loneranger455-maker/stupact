@@ -13,7 +13,9 @@
 
 <body>
     <div class="contain">
+        <h1>{{error}}</h1>
         <div class="box">
+           
             <i onclick="location.href='{% url 'userbio' %}'" style="position: relative;left: 19vw;top:-3vh;font-size:2vw;"class="material-icons">highlight_off</i>
             <!-- <button style="align-self:flex-start ;margin-left:4vw; border:transparent;
             border-radius: 12px;">
@@ -24,11 +26,11 @@
                 <div class="abox">
                     <div class="fname">
                         <p>First Name</p>
-                        <input type="text" name="firstname" placeholder="Enter Firstname" required value={{firstname}}>
+                        <input type="text" name="fname" placeholder="Enter Firstname" required value={{fname}}>
                     </div>
                     <div class="lname">
                         <p>Last Name</p>
-                        <input type="text" name="lastname" placeholder="Enter Lastname" required value={{lastname}}>
+                        <input type="text" name="lname" placeholder="Enter Lastname" required value={{lname}}>
                     </div>
                 </div>
                 <div class="abox">
@@ -77,14 +79,26 @@
                     </div>
                 </div>
                 <div class="button">
-                    <button class="security">
-                        Change Password
-                    </button>
+                    
                     <input type="submit" value="Update">
                 </div>
             </form>
+            
         </div>
     </div>
+    <dialog class="modal" id="modal">
+        <p style="display:inline-block;color:red;margin-left: 3vw;margin-top: 2vh;" id="error"></p>
+        <i class="material-icons" style="z-index:2;font-size:24px;">highlight_off</i>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="password" name="" id="current" placeholder="Current Password">
+            <input type="password" name="" id="new" placeholder="New Password">
+            <input type="password" name="" id="confirm" placeholder="Confirm Password">
+           
+        </form>
+        <button onclick="changepassword()">Update</button>
+        
+    </dialog>
 </body>
 
 </html>

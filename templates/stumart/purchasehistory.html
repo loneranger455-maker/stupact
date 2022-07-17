@@ -1,9 +1,14 @@
 {% include "navbar.html" %}
-{% include 'stumart/topbar.html' %}
-<section style="display:flex;width:88vw;height:75vh;margin-left: 6vw;justify-content: space-between;">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/stumart.css">
+<main>
+<section style="display:flex;width:88vw;height:90vh;margin-left: 6vw;justify-content: space-between;">
     <div class="buyerhistory">
         <div class="purchbox">
-            <center><h1 style="margin-top:2vh;">Purchase history</h1></center>
+            <div style="display:flex;margin:4vh 12vw">
+            <img src="/static/icons/png/buy.png" style="height:3vw;width:3vw;">
+            <h1 style="margin-top:2vh;margin-left: 1vw;">Purchase history</h1>
+        </div>
         {% for i in buyer %}
         <div class="history">
             <h1>{{i.title}}</h1>
@@ -17,8 +22,14 @@
     </div>
     </div>
     <div class="buyerhistory">
-    <div class="purchbox">
-        <center><h1 style="margin-top:2vh;">Sell history</h1></center>
+   
+        <div class="purchbox">
+            <div style="display:flex;margin:4vh 12vw">
+            <img src="/static/icons/png/sold.png" style="height:3vw;width:3vw;">
+            <h1 style="margin-top:2vh;margin-left: 1vw;">Sell history</h1>
+            </div>
+       
+      
         {% for i in seller %}
         <div class="history">
             <h1>{{i.title}}</h1>

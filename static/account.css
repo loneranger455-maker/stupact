@@ -125,7 +125,7 @@ input::file-selector-button {
 }
 
 
-input[type=submit] {
+.mininfo input[type=submit] {
     font-weight: bold;
     color: dodgerblue;
     padding: 0.5em;
@@ -161,4 +161,75 @@ button:hover{
     background-color: crimson;
     color: white;
     left: 0vw;
+}
+#modal{
+    box-sizing: border-box;
+    position:absolute;
+    left: 37.5vw;
+    top:27.5vh;
+    height: 48vh;
+    width: 25vw;
+    border-radius: 12px;
+    border: transparent;
+    background-color: rgba(245, 240, 240, 0.4);
+}
+
+#modal form{
+    height: 30vh;
+    width:20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left:1.5vw;
+    margin-top: 2.5vh;
+}
+
+#modal input[type=password]{
+    background-color: rgba(245,245,245,0.8);
+    border:transparent;
+    border-radius: 12px;
+    width: 20vw;
+    padding: 2vh 1vw;
+}
+
+#modal button{
+    background-color: rgba(245,245,245,0.8);
+    width: 22vw;
+    padding: 2vh 1vw;
+    border:transparent;
+    border-radius: 12px;
+    margin-left:1.5vw;
+    margin-top: 2.5vh;
+ 
+} 
+
+#modal input[type=password]:focus{
+    border:transparent;
+    outline:2px solid purple;
+}
+
+#modal input[type=submit]:hover{
+    color: white;
+    background-color: orangered;
+}
+
+input[type=password]::placeholder{
+    text-align: center;
+}
+
+.modal::backdrop{
+    /* background: linear-gradient(45deg,red,blue);
+    opacity:0.3; */
+    backdrop-filter: blur(5px);
+}
+
+#modal i{
+    position: absolute;
+    top:0vh;
+    left:23vw;
+    z-index: -1;
+}
+#modal i:hover{
+    color:red;
+    cursor: pointer;
 }

@@ -11,8 +11,8 @@
 body {
     /* background: url(nice.webp); */
     background-color: thistle;
+    overflow: overlay ;
 }
-
 
 .topbar {
     background-color: rgba(255, 255, 255, 0.24);
@@ -25,18 +25,23 @@ body {
     margin-left: 6vw;
 }
 
-.topbar>button {
+.topbar>button ,.topbar >select{
     height: 5vh;
     width: 10vw;
     border-radius: 10px;
     border: 0px;
     margin-left: 5vw;
 }
-
+.topbar>select{
+    width: 15vw;
+    margin-bottom: 2vh;
+    font-size: 1vw;
+}
 form {
     width: 43%;
     display: flex;
     justify-content: flex-end;
+    margin-right: 4vw;
     align-items: center;
 }
 
@@ -75,6 +80,7 @@ form {
     left: 3vw;
     width: 94vw;
     top: 3vh;
+    bottom: 3vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -94,6 +100,7 @@ form {
 .singleitem,
 #details {
     display: flex;
+    align-items:baseline;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -258,16 +265,14 @@ textarea {
 .sellerhistory {
     display: flex;
     flex-direction: column;
-
     width: 49%;
-
     height: 100%;
 
 }
 
 .purchbox {
     width: 43vw;
-    height: 68vh;
+    height: 83vh;
     margin-top: 5%;
     background-color: rgba(255, 255, 255, 0.356);
     border-radius: 20px;
@@ -296,4 +301,88 @@ textarea::placeholder{
 
 #imageofproduct{
     border-radius: 12px;
+}
+
+.info{
+    width: 10vw;
+    height: 16vh;
+    padding: 5px;
+    border-radius: 12px;
+    color: rgb(11, 29, 126);
+    background-color: rgba(255, 255, 255, 0.822);
+    position: absolute;
+    left: 13vw;
+    top: 4vh;
+    display: none;
+}
+.singleitem i{
+    z-index: 2;
+}
+.material-icons:hover+.info{
+    display: block;
+}
+.modal{
+    padding: 1vh 1.5vw;
+    box-sizing: border-box;
+    position:absolute;
+    left: 37.5vw;
+    top:27.5vh;
+    height: 48vh;
+    width: 25vw;
+    border-radius: 12px;
+    border: transparent;
+    background-color: rgba(245, 240, 240, 0.4);
+}
+#modal button{
+    background-color: rgba(245,245,245,0.8);
+    width: 22vw;
+    padding: 2vh 1vw;
+    border:transparent;
+    border-radius: 12px;
+    margin-top: 2.5vh;
+ 
+} 
+.modal::backdrop{
+    /* background: linear-gradient(45deg,red,blue);
+    opacity:0.3; */
+    backdrop-filter: blur(5px);
+}
+.modal i{
+    position: absolute;
+    top:0vh;
+    left:23vw;
+    z-index: -1;
+}
+.modal i:hover{
+    color:red;
+    cursor: pointer;
+}
+#modal2{
+    padding: 1vh 1vw 1vh 2vw;
+    box-sizing: border-box;
+    position:absolute;
+    left: 40vw;
+    top:32.5vh;
+    height: 20vh;
+    width: 20vw;
+    border-radius: 12px;
+    border: transparent;
+    background-color: rgba(245, 240, 240, 0.4);
+}
+#modal2 button{
+    border: 0px;
+    margin-top: 6vh;
+    position: relative;
+
+    left: 5vw;
+    height: 5vh;
+    width: 6vw;
+}
+.activated_button{
+    background-color: crimson;
+    color: white;
+}
+.normal_button{
+    background-color: white;
+    color: black;
 }

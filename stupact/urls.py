@@ -22,7 +22,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',views.login),
+    path('login/',views.login,name="login"),
     path('',views.start),
     path('home/',views.home,name="home"),
     path('services/',views.services,name="servicestab"),
@@ -35,10 +35,9 @@ urlpatterns = [
     path('notification/',views.notification,name="notification"),
     path('notificationcount/',views.notificationcount,name="notificationcount"),
     path('updateinfo/',views.updateinfo,name="updateinfo"),
-
-
-
-   
+    path('changepassword/',views.changepassword,name="changepassword"), 
+    path('deleteproduct',views.deleteproduct,name="deleteproduct"),
+    path('stumart/search/cat?=<str:category>',views.searchbycategory,name="searchbycategory")
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

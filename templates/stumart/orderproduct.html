@@ -3,14 +3,14 @@
     <div  class="order">
         <div class="left-div">
            
-            <center><h1>Complete the following details</h1></center>
+            <center><h1 style="font-family:Gentium Book Plus;">Complete the following details</h1></center>
             <form style="margin-top:3vh;" method="post">  
                 {% csrf_token %}
             <div class="innergrid">
                 
-        <input  required type="text" name="fname" placeholder="First name" value={{firstname}}>
-        <input required type="text" name="lname" placeholder="Last name" value={{lastname}} >
-        <input type="tel" id="phone" name="phone"  placeholder="Phonenumber">
+        <input  required type="text" name="fname" placeholder="First name" value={{myobject.first_name}}>
+        <input required type="text" name="lname" placeholder="Last name" value={{myobject.last_name}} >
+        <input type="tel" id="phone" name="phone"  placeholder="Phonenumber" value={{myobject.phonenumber}}>
         <select name="region" id="region-select">
             <option value="none">--Select your nearest region--</option>
             <option value="hostel">Hostel</option>
@@ -21,27 +21,28 @@
         </select>
         <select name="faculty" id="faculty-select">
             <option value="none">--Select your faculty--</option>
-            <option value="BCT">BCT</option>
-            <option value="BME">BME</option>
-            <option value="BCE">BCE</option>
-            <option value="BEI">BEI</option>
-            <option value="BGE">BGE</option>
-            <option value="BEL">BEL</option>
+            <option value="BCT" {% if myobject.faculty == "BCT" %} selected {% endif %}>BCT</option>
+            <option value="BME" {% if myobject.faculty == "BME" %} selected {% endif %}>BME</option>
+            <option value="BCE" {% if myobject.faculty == "BCE" %} selected {% endif %}>BCE</option>
+            <option value="BEI" {% if myobject.faculty == "BEI" %} selected {% endif %}>BEI</option>
+            <option value="BAM" {% if myobject.faculty == "BAM" %} selected {% endif %}>BAM</option>
+            <option value="BGE" {% if myobject.faculty == "BGE" %} selected {% endif %}>BGE</option>
+            <option value="BEL" {% if myobject.faculty == "BEL" %} selected {% endif %}>BEL</option>
         </select>
         <select name="batch" id="batch-select">
             <option value="">--Select your batch--</option>
-            <option value="074">074</option>
-            <option value="075">075</option>
-            <option value="076">076</option>
-            <option value="077">077</option>
-            <option value="078">078</option>
+            <option value="074" {% if myobject.batch == "2074" %} selected {% endif %}>074</option>
+            <option value="075" {% if myobject.batch == "2075" %} selected {% endif %}>075</option>
+            <option value="076" {% if myobject.batch == "2076" %} selected {% endif %}>076</option>
+            <option value="077" {% if myobject.batch == "2077" %} selected {% endif %}>077</option>
+            <option value="078" {% if myobject.batch == "2078" %} selected {% endif %}>078</option>
         </select>
         
         <div class="paymethod">
-            <h2 style="margin-top:2.5vh;margin-left: 2vw;">Payment Method:</h2>
+            <h2 style="margin-top:2.5vh;margin-left: 2vw;font-family:Gentium Book Plus;font-weight: 550;">Payment Method:</h2>
         <div style="margin-top:0.25vh;">
-            <input type="radio" name="payment" value="esewa">
-        <img style="height:2.5vw;width:10vw;margin: 0.25vh 0 0.25vh 0;" src="/static/eSewa-logo.png">
+            <input type="radio"  name="payment" value="esewa">
+        <img style="height:2.5vw;width:10vw;margin: 0.3vh 0 0.3vh 0;" src="/static/eSewa-logo.png">
         </div>
         <div>
         <input type="radio"  name="payment" value="cod">
@@ -56,21 +57,22 @@
         </div>
         <div class="right-div">
             <div class="totalcost">
-                <h1>Order Summary:</h1><br>
-                <p>Product Cost:</p><span>Rs.{{object.price}}</span><br><br>
-                <p style="margin:2vh 0vh;">Delivery Charge:</p><span id="delivery">Rs.50</span><br><br><hr>
-                <p>Total Cost:</p><span id="total">Rs:{{object.price|add:50}}</span>
+                <h1 style="font-family:Gentium Book Plus;">Order Summary:</h1>
+                <div><p>Product Cost:</p><span>Rs.{{object.price}}</span></div>
+                <div><p style="margin:2vh 0vh;">Delivery Charge:</p><span id="delivery">Rs.50</span></div>
+                <div style="border-bottom:2px solid black;"></div>
+                <div><p style="margin-top:2vh;">Total Cost:</p><span id="total">Rs:{{object.price|add:50}}</span></div>
             </div>
             <div class="singleitem">
                 <div id="itemselected">
-                    <h1 style="font-family:Patrick Hand;">Item Selected:</h1>
+                    <h1 style="font-family:Patrick Hand;margin-top: 6vh">Item Selected:</h1>
                     <button onclick="location.href='{% url 'stumart' %}'">Cancel order</button>
                 </div>
                 
-                <div id="product">
-                <img style="height:8vw;width:8vw;border-radius:12px 12px 0px 0px;" src="/media/{{object.image}}">
+                <div id="product" style="height: 100%;width: 50%;" >
+                <img style="margin-top: 2vh; height:8vw;width:8vw;border-radius:12px 12px 0px 0px;display: inline-block;" src="/media/{{object.image}}">
                 <div id="details2">
-                <h1>{{object.title}}</h1>
+               <h3>{{object.title}}</h3>
                 </div>
                 </div>
             </div>

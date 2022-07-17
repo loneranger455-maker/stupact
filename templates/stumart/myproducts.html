@@ -1,15 +1,67 @@
 {% include 'navbar.html' %}
 {% include 'stumart/topbar.html' %}
+<dialog class="modal" id="modal">
+    <p style="display:inline-block;color:red;margin-left: 3vw;margin-top: 2vh;" id="error"></p>
+    <i class="material-icons" id="close" style="z-index:2;font-size:24px;">highlight_off</i>
+    <h1>Are you sure you want to delete  this item?</h1>
+    <button id="yes" onclick="refirect()">Yes</button>
+    <button id="close_this">No</button>
+    
+</dialog>
+<dialog class="modal" id="modal2">
+<h2>Deleted Sucessfully...</h2>
+
+<button style="background-color:green;color:black;" onclick="location.href='{% url 'productmenu' tabvalue='myproducts' %}'">Ok</button>
+    
+</dialog>
+
 <section class="items">
     {% for i in itemlist %}
     <div class="singleitem">
+        <span style="float:left;color:green;">{{i.status}}</span>
+        {% if i.status != "Order Verified" %}
+        <i class="material-icons" onclick="showdialog('{{i.id}}')" style="font-size:1.5vw;color: darkred;position: relative;left: 8.5vw;">delete_forever</i>
+        {% endif %}
         <img style="height:16vw;width:16vw;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
         <div id="details2">
         <h1>{{i.title}}</h1>
-        <h3>Rs:{{i.price}}</h3>
+        <h3 style="color:rgb(199, 71, 20);">Rs:{{i.price}}</h3>
+        
         </div>
     </div>
     {% endfor %}
 </section>
 </body>
+<script>
+var id="" 
+ function showdialog(value){
+    const modal = document.querySelector('#modal');
+    modal.showModal();
+    id=value
+    console.log(id)
+    const closeModal = document.querySelector('#close');
+    const close2=document.querySelector('#close_this')
+  
+    closeModal.addEventListener('click', () => {
+        modal.close();
+    })
+    close2.addEventListener('click', () => {
+        modal.close();
+    })
+
+ }
+ function refirect(){
+        $.ajax({
+            method:"GET",
+            url:"{% url 'deleteproduct' %}",
+            data:{"id":id},
+            success:function(){
+                const modal = document.querySelector('#modal2');
+    modal.showModal();
+  
+            }
+        })
+    }    
+ 
+    </script>
 </html>

@@ -1,18 +1,19 @@
 {% include "navbar.html" %}
+
 <link rel="stylesheet" href="/static/account.css">
     <div class="container">
         <div class="head">
             <div class="profile">
                 <div class="person">
-                {% if image == "" %}
+                {% if object.image == "" %}
             <img src="/static/user.png" id="person" >
             {% else %}
-            <img src="/media/{{image}}" id="person">
+            <img src="/media/{{object.image}}" id="person">
             {% endif %}
                 </div>
                 <div class="mininfo" style="position:relative;">
-                    <p style="margin-bottom:2%;font-size: 2vw;font-family: 'DM Serif Text', serif;">{{username}}</p>
-                    <p style="margin-bottom:2%; font-style: italic; font-size: 1.2vw;">{{email}}</p>
+                    <p style="margin-bottom:2%;font-size: 2vw;font-family: 'DM Serif Text', serif;">{{object.username}}</p>
+                    <p style="margin-bottom:2%; font-style: italic; font-size: 1.2vw;">{{object.email}}</p>
                     <form method="post" enctype="multipart/form-data"  >
                         {% csrf_token %}
                         <input type="file"  onchange="onpicchange()" name="img" accept="image/*">
@@ -21,12 +22,13 @@
                     </form>
                 </div>
             </div>
+
             <div class="extras">
                 <div class="reward">
                     <img src="/static/reward.svg" alt="" id="reward">
                     <div style="margin-left: 1vw;">
                         <p style="font-family: 'Poppins', sans-serif;">Reward</p>
-                        <p style="color:teal;">{{reward}}</p>
+                        <p style="color:teal;">{{object.reward}}</p>
                     </div>
                    
                 </div>
@@ -34,26 +36,27 @@
             </div>
         </div>
         <div class="body">
+          
             <div class="info">
                 <div class="block">
                     <p class="a">First name:</p>
-                    <p class="b">{{object.firstname}}</p>
+                    <p class="b">{{object.first_name}}</p>
                 </div>
                 <div class="block">
                     <p class="a">Last name:</p>
-                    <p>{{object.lastname}}</p>
+                    <p>{{object.last_name}}</p>
                 </div> 
                 <div class="block">
                     <p class="a">Username:</p>
-                    <p>{{username}}</p>
+                    <p>{{object.username}}</p>
                 </div>
                 <div class="block">
                     <p class="a">Phone:</p>
-                    <p>{{phonenumber}}</p>
+                    <p>{{object.phonenumber}}</p>
                 </div>
                 <div class="block">
                     <p class="a">Email:</p>
-                    <p style="font-style: italic ;">{{email}}</p>
+                    <p style="font-style: italic ;">{{object.email}}</p>
                 </div>
                 <div class="block">
                     <p class="a">College:</p>
@@ -61,22 +64,22 @@
                 </div>
                 <div class="block">
                     <p class="a">Batch:</p>
-                    <p>{{batch}}</p>
+                    <p>{{object.batch}}</p>
                 </div>
                 <div class="block">
                     <p class="a">Faculty:</p>
-                    <p>{{faculty}}</p>
+                    <p>{{object.faculty}}</p>
                 </div>
             </div>
             <div class="main">
                 <div class="store">
-                    <button>My Activities</button>
+                    <button onclick="location.href='{% url 'productmenu' tabvalue='purchasehistory' %}'">My Activities</button>
                 </div>
                 <div class="update" onclick="location.href='{% url 'updateinfo' %}'">
                     <button>Update Information</button>
                 </div>
-                <div class="change">
-                    <button> Change Password</button>
+                <div class="change" >
+                    <button id="open"> Change Password</button>
                 </div>
                 <div class="logout">
                     <button onclick="location.href='{% url 'logout' %}'"> Logout</button>
@@ -84,10 +87,52 @@
             </div>
         </div>
     </div>
+    <dialog class="modal" id="modal">
+        <p style="display:inline-block;color:red;margin-left: 3vw;margin-top: 2vh;" id="error"></p>
+        <i class="material-icons" style="z-index:2;font-size:24px;">highlight_off</i>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="password" name="" id="current" placeholder="Current Password">
+            <input type="password" name="" id="new" placeholder="New Password">
+            <input type="password" name="" id="confirm" placeholder="Confirm Password">
+           
+        </form>
+        <button onclick="changepassword()">Update</button>
+        
+    </dialog>
 </body>
 <script>
+    const modal = document.querySelector('#modal');
+    const openModal = document.querySelector('#open');
+    const closeModal = document.querySelector('.material-icons');
+
+    openModal.addEventListener('click', () => {
+      
+        modal.showModal();
+    })
+
+    closeModal.addEventListener('click', () => {
+        document.getElementById("error").innerHTML="";
+        modal.close();
+    })
+
     function onpicchange(){
         document.getElementById("submit_photo").style.display="inline-block";
+    }
+    
+    function changepassword(){
+        $.ajax({
+            type:"GET",
+            url:"{% url 'changepassword' %}",
+            data:{
+                "current":document.getElementById("current").value,
+                "new":document.getElementById("new").value,
+                "confirm":document.getElementById("confirm").value,
+            },
+            success:function(request){
+                document.getElementById("error").innerHTML=request.error;
+            }
+        })
     }
 </script>
 </html>

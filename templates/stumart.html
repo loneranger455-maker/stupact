@@ -2,16 +2,20 @@
 {% include "stumart/topbar.html" %}
 <section class="items">
     {% for i in itemlist %}
-    {% if i.username != request.session.Username %}
-    <div class="singleitem">
+   
+    <div class="singleitem" style="position:relative;">
+        <i class="material-icons" style="font-size:1.5vw;color:darkblue;position: relative;left: 8vw;">info</i>
+        <div class="info">
+            <p>{{i.discription}}</p>
+        </div>
         <img style="height:16vw;width:16vw;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
         <div id="details">
-        <h1>{{i.title}}</h1>
-        <h3>Rs:{{i.price}}</h3>
+        <p style="font-family:Patrick Hand;font-size: 1.4vw;">{{i.title}}</p>
+        <h3 style="color:rgb(196, 62, 0);">Rs:{{i.price}}</h3>
         </div>
         <div class="butt" onclick="location.href='{% url "placeorder" i.id %}'">Order</div>
     </div>
-    {% endif %}
+  
     {% endfor %}
 </section>
 

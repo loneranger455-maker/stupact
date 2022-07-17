@@ -90,6 +90,7 @@ select {
 
 .button{
     height: 20%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,22 +99,14 @@ select {
 .button input{
     border: transparent;
     outline:none;
-    width:46.67%;
+    width:100%;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
     background-color: rgb(200,112,234);
     color:white;
 }
 
-.button button{
-    width:46.67%;
-    border: transparent;
-    border-radius: 12px;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    background-color: rgb(200,112,234);
-    color:white;
-}
+
 
 input::placeholder{
     text-align: center;

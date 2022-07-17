@@ -9,6 +9,7 @@ from dataforstupact.models import stumartmodel,order_list,notifications
 import requests 
 import os
 import uuid
+from datetime import datetime, timezone
 def signup(request):
         error=""
         username=""
@@ -58,7 +59,7 @@ def signup(request):
                 error="password fields don't match"
                 symbol[0]=sym1
                 symbol[1]=sym1
-                symbol[2]=sym1
+                symbol[2]=sym2
                 symbol[3]=sym2                
             # elif faculty=="none" or batch=="none":
             #     error="Complete the select field"
@@ -67,7 +68,7 @@ def signup(request):
                 valuestobesaved.save()
                 valuestobesaved=notifications(username=username,notify="Welcome to stumart family.Hope you will like our services.",status="unseen")
                 valuestobesaved.save()
-                return redirect('/')
+                error="success"
                
         except:
             pass
@@ -165,18 +166,25 @@ def logout(request):
 def stumartfunc(request):
     variable=stumartmodel.objects.all()
     data=list()
-    
+    if request.method=="POST":
+        value=request.POST.get("search")
+        allobj=[i.title for i in variable]
+        allobj2=[i for i in allobj if i[0:len(value)]==value]
+        variable=[i for i in variable if i.title in allobj2 ]
     for i in variable:
-        temp=dict()
-        temp["id"]=i.id
-        temp["username"]=i.username
-        temp["title"]=i.title
-        temp["image"]=i.image 
-        temp["price"]=i.price  
-        data.append(temp)
+        if i.username!=request.session["Username"]:
+            temp=dict()
+            temp["id"]=i.id
+            temp["username"]=i.username
+            temp["title"]=i.title
+            temp["image"]=i.image 
+            temp["price"]=i.price  
+            temp["discription"]=i.details
+            data.append(temp)
        
     data2={
         "itemlist":data,
+        "category":"all"
     }
     return render(request,"stumart.html",data2)
 
@@ -187,12 +195,20 @@ def productmenu(request,tabvalue):
             allobjects=stumartmodel.objects.all()
             allobjects=[i for i in allobjects if i.username==request.session["Username"] ]
             data=[]
+          
             for i in allobjects:
                 temp=dict()
                 temp["username"]=i.username
                 temp["title"]=i.title
                 temp["image"]=i.image 
                 temp["price"]=i.price  
+                temp["id"]=i.id
+                try:
+                    status=order_list.objects.get(product=str(i.id))
+                    temp["status"]=status.status
+                except:
+                    temp["status"]=""
+                
                 data.append(temp)
         
             data2={
@@ -208,6 +224,11 @@ def productmenu(request,tabvalue):
             image=request.FILES["image"]
             varia=stumartmodel(username=request.session["Username"],category=category,price=price,title=title,details=discription,image=image)
             varia.save()
+            objforreward=mymodel.objects.get(username=request.session["Username"])
+            objforreward.reward+=20
+            objforreward.save()
+            valuestobesaved=notifications(username=request.session["Username"],notify="You have obtained 20 reward points for placing the item.Keep going..",status="unseen")
+            valuestobesaved.save()
             return redirect('/stumart')
         return render(request, "stumart/placeproduct.html")
    elif tabvalue=="purchasehistory":
@@ -223,6 +244,7 @@ def productmenu(request,tabvalue):
 #for ordering product
 def orderproduct(request,uniquevalue):
     allobjects=stumartmodel.objects.get(id=uniquevalue)
+    myobject=mymodel.objects.get(username=request.session["Username"])
     if request.method=="POST":
         fname=request.POST.get("fname")
         lname=request.POST.get("lname")
@@ -239,10 +261,11 @@ def orderproduct(request,uniquevalue):
                 disc=50
         print(payment)
         if payment=="cod":
-            save2=order_list(first_name=fname,last_name=lname,phonenumber=phonenumber,region=region,buyer=request.session["Username"],seller=allobjects.username,product=str(allobjects.id),delivery_charge=disc,price=allobjects.price,status="order verified",title=allobjects.title)
+            save2=order_list(first_name=fname,last_name=lname,phonenumber=phonenumber,region=region,buyer=request.session["Username"],seller=allobjects.username,product=str(allobjects.id),delivery_charge=disc,price=allobjects.price,status="Order Verified",title=allobjects.title)
             save2.save()
             objforreward=mymodel.objects.get(username=request.session["Username"])
             objforreward.reward+=20
+            objforreward.save()
             valuestobesaved=notifications(username=request.session["Username"],notify="You have obtained 20 reward points for the order.Keep going..",status="unseen")
             valuestobesaved.save()
             valuestobesaved=notifications(username=request.session["Username"],notify="Thank you for the order.You have selected cash on delivery.You will get your product within some days.",status="unseen")
@@ -262,24 +285,16 @@ def orderproduct(request,uniquevalue):
                 'fu':'http://merchant.com.np/page/esewa_payment_failed?q=fu'}
             resp = requests.post(url, d)
             print(resp)
-    return render(request, "stumart/orderproduct.html",{"object":allobjects})
+    return render(request, "stumart/orderproduct.html",{"object":allobjects,"myobject":myobject})
 
 #for notifications
-def sortit(objectvalue):
-    for i in range(0,len(objectvalue)):
-        for j in range(i+1,len(objectvalue)):
-            if objectvalue[i].time<objectvalue[j].time:
-                temp=objectvalue[i]
-                objectvalue[i]=objectvalue[j]
-                objectvalue[j]=temp
 
-    return(objectvalue)
 
 def notification(request):
     timecounter=[]
     allobjects=notifications.objects.all()
     allobjects=[i for i in allobjects if i.username==request.session["Username"] or i.username=="all"]
-    allobjects=sortit(allobjects)
+    allobjects.reverse()
     notifylist=[]
     
     for i in allobjects:
@@ -288,18 +303,35 @@ def notification(request):
                 i.save()
             
             notifylist.append(i.notify)
-            diff=int(datetime.now().strftime("%Y%m%d%H%M%S"))-int(i.time)
-            if(diff<100):
-                    diff2=str(diff)+"sec"
-            elif(diff<10000):
-                    diff2=str(int(diff/100))+"min"
-            elif(diff<1000000):
-                    diff2=str(int(diff/10000))+"hr"
-            elif(diff<100000000):
-                    diff2=str(int(diff/1000000))+"day"
-            else:
-                    diff2=str(int(diff/1000000000))+"months"
-            timecounter.append(diff2)
+            today = datetime.now(timezone.utc)
+            diff=today-i.time
+            # diff=int(datetime.now().strftime("%Y%m%d%H%M%S"))-int(i.time)
+            # if(diff<100):
+            #         diff2=str(diff)+"sec"
+            # elif(diff<10000):
+            #         diff2=str(int(diff/100))+"min"
+            # elif(diff<1000000):
+            #         diff2=str(int(diff/10000))+"hr"
+            # elif(diff<100000000):
+            #         diff2=str(int(diff/1000000))+"day"
+            # else:
+            #         diff2=str(int(diff/1000000000))+"months"
+            diff=str(diff).split(':')
+            diff=[i[0:2] for i in diff]
+            times=["secs","mins","hrs","days","months","years"]
+            ans=""
+            try:
+                
+                diff.remove('0')
+                diff.remove('00')
+            except:
+                pass
+            counter=len(diff)-1
+            for i in range(0,counter+1):
+                ans=ans+diff[i]+times[counter-i]+" "
+
+            print(diff)
+            timecounter.append(ans)
                    
     data={
         "notifications":notifylist,
@@ -318,7 +350,48 @@ def notificationcount(request):
     return JsonResponse(data)
 
 def updateinfo(request):
+    error=""
     allobjects=mymodel.objects.get(username=request.session["Username"])
+    if request.method=="POST":
+            username=request.POST.get("username") 
+            email=request.POST.get("email")
+            fname=request.POST.get("fname")
+            lname=request.POST.get("lname")
+            faculty=request.POST.get("faculty")
+            batch=request.POST.get("batch")
+            phonenumber=request.POST.get("phonenumber")
+            allobjects3=mymodel.objects.all()
+            allobjects1=[i.username for i in allobjects3]
+            allobjects2=[i.email for i in allobjects3 ]
+       
+            # if len(fname)<3 or len(lname)<3:
+            #     error="First and last name must be at least 3 characters long"
+            if username in allobjects1 and username!=request.session["Username"]:
+                error="Username already exist"
+               
+            elif email[-10:]!="@gmail.com":
+                error="Email format is incorrect"
+                
+            elif email in allobjects2 and email!=request.session["email"]:
+                error="User already registered from this email"
+               
+            elif len(username)<5:
+                error="Username must be at least 5 characters long"
+              
+            elif len(phonenumber)<10:
+                error="phone number is not correct"
+            else:
+                allobjects.first_name=fname
+                allobjects.last_name=lname
+                allobjects.phonenumber=phonenumber
+                allobjects.email=email
+                allobjects.username=username
+                allobjects.faculty=faculty
+                allobjects.batch=batch
+                allobjects.save()
+                return redirect("/user")
+
+           
     data={"username":request.session["Username"],
     "fname":allobjects.first_name,
     "lname":allobjects.last_name,
@@ -327,7 +400,82 @@ def updateinfo(request):
     "batch":allobjects.batch,
     "image":allobjects.image,
     "phonenumber":allobjects.phonenumber,
+    "error":error,
     
     }
     return render(request, "updateinfo.html",data)
 
+def changepassword(request):
+    sym1="✔"
+    sym2="✘"
+    allobjects=mymodel.objects.get(username=request.session["Username"])
+    error=""
+    symbol=["","",""]
+    current=request.GET["current"]
+    print(current)
+    new=request.GET["new"]
+    confirm=request.GET["confirm"]
+    if allobjects.password!=current:
+        error="old password is not correct"
+        symbol[0]=sym2
+    elif len(new)<8:
+        error="password must be at least 8 characters long"
+        symbol[0]=sym1
+        symbol[1]=sym2
+    elif new!=confirm:
+        error="password dont match"
+        symbol[0]=sym1
+        symbol[1]=sym2
+        symbol[2]=sym2
+    else:
+        allobjects.password=new
+        allobjects.save()
+        return redirect("/user")
+    
+    data={
+        "error":error,
+        "symbol":symbol
+    }
+    return JsonResponse(data)
+
+
+def deleteproduct(request):
+    productid=request.GET["id"]
+    try:
+        object1=stumartmodel.objects.get(id=productid)
+        object1.delete()
+    except:
+        print(productid)
+  
+    return redirect("/stumart/myproducts")
+
+def searchbycategory(request,category):
+  
+    variable=stumartmodel.objects.all()
+    data=list()
+    if request.method=="POST":
+        value=request.POST.get("search")
+        allobj=[i.title for i in variable]
+        allobj2=[i for i in allobj if i[0:len(value)]==value]
+        variable=[i for i in variable if i.title in allobj2 ]
+    if category=="all":
+        return redirect("/stumart")
+    for i in variable:
+        if i.username!=request.session["Username"] and i.category==category:
+            temp=dict()
+            temp["id"]=i.id
+            temp["username"]=i.username
+            temp["title"]=i.title
+            temp["image"]=i.image 
+            temp["price"]=i.price  
+            temp["discription"]=i.details
+            data.append(temp)
+        
+       
+    data2={
+        "itemlist":data,
+        "category":category,
+    }
+    return render(request,"stumart.html",data2)
+    
+    

@@ -14,7 +14,7 @@ class mymodel(models.Model):
     email=models.EmailField(max_length=30)
     faculty=models.CharField(max_length=10,blank=True)
     batch=models.CharField(max_length=10,blank=True)
-    image=models.ImageField(upload_to="",default="user.png")
+    image=models.ImageField(upload_to="",default="user.svg")
     phonenumber=models.CharField(max_length=15,blank=True)
     reward=models.IntegerField(default=0,blank=True)
 
@@ -44,4 +44,5 @@ class notifications(models.Model):
     username=models.CharField(max_length=30)
     notify=models.TextField()
     status=models.CharField(max_length=8,default="unseen")
-    time=models.CharField(max_length=20,default=datetime.now().strftime("%Y%m%d%H%M%S"))
+    # time=models.CharField(max_length=20,default=datetime.now().strftime("%Y%m%d%H%M%S"))
+    time=models.DateTimeField(auto_now_add=True)

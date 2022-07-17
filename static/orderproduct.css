@@ -12,8 +12,10 @@ body{
     width: 50%;
 }
 .singleitem{
+    display: flex;
+    
     margin-left: 6vw;
-    margin-top: 21.3vh;
+    margin-top: 14vh;
     width: 38vw;
     border-radius: 12px;
     height: 25vh;
@@ -47,6 +49,10 @@ body{
     .innergrid >input::placeholder{
         text-align: center;
     }
+    .innergrid input:focus,select:focus{
+        border: transparent;
+        outline: 2px solid purple;
+    }
     .innergrid >input[type="email"],input[type="username"]{
         grid-column: 1/3;
     
@@ -68,14 +74,20 @@ body{
       
     }
     #product{
-       position: absolute;
-       right: 3vw;
-       top: 1vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    
     }
     #itemselected{
-    position: relative;
-    top: 5vh;
-    left: 4vw;
+   
+    width: 50%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     }
     #itemselected>button{
         margin-top: 4vh;
@@ -89,14 +101,18 @@ body{
     }
     .totalcost{
         background-color: rgba(255, 255, 255, 0.349);
+        display: flex;
+        flex-direction: column;
+        
+        gap: 4vh;
         width: 30vw;
         padding-left: 4vw;
         padding-right: 4vw;
-        height: 32vh;
+        height: 41vh;
         position: relative;
         border-radius: 12px;
         left: 6vw;
-        top: 18vh;
+        top: 11.5vh;
     }
     .totalcost span{
         float: right;
@@ -129,6 +145,9 @@ body{
         border: red;
         color: purple;
 
+    }
+    .paymethod input[type=radio]:focus{
+        outline: none;
     }
     .paymethod img{
       position: relative;

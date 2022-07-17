@@ -5,11 +5,27 @@
 
     <main>
 <section class="topbar">
-    <button onclick="location.href='{% url 'productmenu' tabvalue='placeproduct' %}'">Place a product</button>
-    <button onclick="location.href='{% url 'productmenu' tabvalue='myproducts' %}'">My products</button>
-    <button onclick="location.href='{% url 'productmenu' tabvalue='purchasehistory' %}'">My activity</button>
-    <form >
-        <input type="text" placeholder="Search" >
+    <button class= {% if request.path == "/stumart/placeproduct" %}"activated_button" {% else %} "normal_button" {% endif %} onclick="location.href='{% url 'productmenu' tabvalue='placeproduct' %}'">Place a product</button>
+    <button class= {% if request.path == "/stumart/myproducts" %}"activated_button" {% else %} "normal_button" {% endif %} onclick="location.href='{% url 'productmenu' tabvalue='myproducts' %}'">My products</button>
+   
+        <select name="category" id="category" onchange="redirectthis()">
+            <option value="all" >All category</option>
+            <option value="book" {% if category == "book" %}selected {% endif %}>Books</option>
+            <option value="notes" {% if category == "notes" %}selected {% endif %}>Notes</option>
+            <option value="fur" {% if category == "fur" %}selected {% endif %}>Furniture</option>
+            <option value="draw" {% if category == "draw" %}selected {% endif %}>Drawing tools</option>
+            <option value="others" {% if category == "others" %}selected {% endif %}>Others</option>
+        </select>
+        <form method="post">
+            {% csrf_token %}
+        <input type="text"  name="search" placeholder="Search">
         <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 </section>
+<script>
+    function redirectthis(){
+        value1=document.getElementById("category").value
+        console.log(value1)
+        window.location.href="{% url 'searchbycategory' category=12345 %}".replace(/12345/, value1.toString());
+    }
+</script>
