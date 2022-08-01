@@ -37,7 +37,11 @@ urlpatterns = [
     path('updateinfo/',views.updateinfo,name="updateinfo"),
     path('changepassword/',views.changepassword,name="changepassword"), 
     path('deleteproduct',views.deleteproduct,name="deleteproduct"),
-    path('stumart/search/cat?=<str:category>',views.searchbycategory,name="searchbycategory")
+    path('stumart/search/cat?=<str:category>',views.searchbycategory,name="searchbycategory"),
+    path('tutor/',views.tutor,name="tutor_intro"),
+    path('tutor/dashboard',views.tutor_dashboard,name="dashboard"),
+    path('verify/',views.verify,name="verify"),
+    path('/stumart/productinfo/<uuid:uniquevalue>',views.productinfo,name="productinfo")
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

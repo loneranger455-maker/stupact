@@ -10,7 +10,7 @@
 
 body {
     /* background: url(nice.webp); */
-    background-color: thistle;
+
     overflow: overlay ;
 }
 
@@ -87,11 +87,13 @@ form {
 }
 
 .items>div {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: 50vh;
     width: 19.75vw;
-    background-color: rgba(255, 255, 255, 0.24);
+    /* border: 2px solid rgba(0, 0, 0, 0.192); */
+    background-image: linear-gradient(to bottom,rgba(255, 255, 255, 0.116),rgba(255, 255, 255, 0.219));
     border-radius: 12px;
     margin-left: 3vw;
     margin-top: 6vh;
@@ -105,25 +107,21 @@ form {
     justify-content: space-around;
     align-items: center;
 }
-
-.singleitem:hover #details {
-    display: none;
+.singleitem:hover{
+    border: 2px solid rgba(0, 0, 0, 0.192); 
 }
 
 .butt {
-    display: none;
-    padding-top: 2vh;
-    background-color: rgba(152, 156, 175, 0.425);
-    height: 5vh;
+    display: block;
+    background-color: crimson;
+    color: white;
+    height: 7vh;
     border-radius: 30px;
-    width: 8vw;
-    text-align: center;
+    width: 12vw;
+    font-size: 18px;
+   border: 0px;
 }
 
-.singleitem:hover .butt {
-
-    display: inline-block;
-}
 
 .butt:hover {
     background-color: darkslateblue;
@@ -133,7 +131,7 @@ form {
 .placeitem {
     display: flex;
     height: 66vh;
-    width: 88vw;
+    width: 68vw;
     background-color: rgba(255, 255, 255, 0.24);
     border-radius: 12px;
     margin-left: 6vw;
@@ -271,17 +269,20 @@ textarea {
 }
 
 .purchbox {
-    width: 43vw;
-    height: 83vh;
-    margin-top: 5%;
+    width: 34vw;
+    height: 84vh;
+    margin-top: 5vh;
+    padding-top: 2vh;
+    box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.356);
     border-radius: 20px;
 }
 
-.history {
+.history{
     border-radius: 20px;
+    width: 90%;
     padding: 1vh 1vw 1vh 1vw;
-    margin: 1vh 0.8vw 0 0.8vw;
+    margin: 2vh 0.8vw 0 0.8vw;
     background-color: rgba(245, 245, 245, 0.452);
 }
 .left-part #imagecontainer{
@@ -304,14 +305,15 @@ textarea::placeholder{
 }
 
 .info{
-    width: 10vw;
+    width: 15vw;
     height: 16vh;
     padding: 5px;
     border-radius: 12px;
-    color: rgb(11, 29, 126);
-    background-color: rgba(255, 255, 255, 0.822);
+    z-index: 20;
+    color: rgb(143, 18, 18);
+    background-color: rgba(214, 209, 209, 0.822);
     position: absolute;
-    left: 13vw;
+    left: 10vw;
     top: 4vh;
     display: none;
 }
@@ -334,7 +336,7 @@ textarea::placeholder{
     background-color: rgba(245, 240, 240, 0.4);
 }
 #modal button{
-    background-color: rgba(245,245,245,0.8);
+    background-color: rgba(245, 245, 245, 0.945);
     width: 22vw;
     padding: 2vh 1vw;
     border:transparent;
@@ -347,6 +349,7 @@ textarea::placeholder{
     opacity:0.3; */
     backdrop-filter: blur(5px);
 }
+
 .modal i{
     position: absolute;
     top:0vh;
@@ -385,4 +388,72 @@ textarea::placeholder{
 .normal_button{
     background-color: white;
     color: black;
+}
+.takemethere:hover{
+    background-color: rgb(0, 10, 95);
+}
+.pricedetails{
+   
+    width: 17vw;
+    height: 65vh;
+    margin-top: 6vh;
+    margin-left: 3vw;
+    border-radius: 12px;
+    background-color: rgba(234, 234, 247, 0.397);
+}
+.pricedetails p{
+    margin:1vw;
+    color: rgb(3, 3, 66);
+}
+.pricedetails span{
+    float: right;
+    color: rgb(107, 23, 8);
+}
+.product-dashboard{
+    border-radius: 12px;
+    margin-left: 6vw;
+    margin-top: 5vh;
+    display:flex;
+    position: absolute;
+    flex-direction: column;
+    height: 84vh;
+    width: 18vw;
+    background-color: #0000009a;
+    color: white;
+}
+.product-dashboard button{
+    background-color: #00000000;
+    border: 0px;
+    color: aqua;
+    width: 100%;
+    height: 10vh;
+
+}
+.contents{
+    width: 72vw;
+}
+.indicators{
+   padding: 2vh 1vw;
+    margin-left: 6vw;
+}
+.indicators_active{
+    padding: 1vh 0.6vw;
+    border-radius: 12px;
+    margin-left: 6vw;
+    background-color: rgba(24, 118, 201, 0.384);
+    color: crimson;
+    
+}
+.indicators:hover{
+    text-decoration: underline;
+}
+.back_delete:hover{
+    background-color: rgba(255, 255, 255, 0.212);
+    border-radius: 12px;
+  
+}
+.back_delete{
+    width: 11vw;
+    height: 6vh;
+    margin-left: 3.5vw;
 }

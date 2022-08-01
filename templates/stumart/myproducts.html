@@ -31,6 +31,7 @@
     </div>
     {% endfor %}
 </section>
+{% include "stumart/paginate.html" %}
 </body>
 <script>
 var id="" 
@@ -38,7 +39,6 @@ var id=""
     const modal = document.querySelector('#modal');
     modal.showModal();
     id=value
-    console.log(id)
     const closeModal = document.querySelector('#close');
     const close2=document.querySelector('#close_this')
   
@@ -57,6 +57,7 @@ var id=""
             data:{"id":id},
             success:function(){
                 const modal = document.querySelector('#modal2');
+                document.querySelector('#modal').close()
     modal.showModal();
   
             }

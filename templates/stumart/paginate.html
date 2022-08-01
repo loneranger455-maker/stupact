@@ -1,0 +1,17 @@
+<div class="center">
+    <div class="pagination">
+        {% if itemlist.has_previous %}
+        <a href="?page={{itemlist.previous_page_number}}">&laquo;</a>
+        {% endif %}
+        {% if count|length != 1 %}
+        {% for i in count%}
+    <a href="?page={{i}}" {% if itemlist.number == i %} class="active" {% endif %}>{{i}}</a>
+    {% endfor %}
+    {% endif %}
+    {% if itemlist.has_next %}
+        <a href="?page={{itemlist.next_page_number}}">&raquo;</a>
+        {% endif %}
+    </div>
+
+  </div>
+ 

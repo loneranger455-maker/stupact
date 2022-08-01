@@ -1,5 +1,6 @@
 {% include 'navbar.html' %}
 {% include 'stumart/topbar.html' %}
+<div style="display:flex;">
 <div class="placeitem">
     <div class="left-part">
         <div id="imagecontainer">
@@ -15,7 +16,7 @@
                     <input type="file" id="img" name="image">
                 </div>
                 <input type="text" placeholder="Title" name="title">
-                <input type="text" placeholder="Price" name="price">
+                <input type="text" id="price" onfocusout="calcprice()" placeholder="Price" name="price">
                 <select name="category" id="product-category" name="category">
                     <option value="none">--Select the product category--</option>
                     <option value="book">Books</option>
@@ -30,8 +31,41 @@
         </div>
     </div>
 </div>
+<div class="pricedetails">
+    <i class="material-icons" id="verifycheckicon" style="margin-left:42%;margin-top:5%;;font-size:36px;color:rgb(10, 10, 71)">check_circle</i>
+    <p id="verifycheck"></p>
+<p style="color: black;margin-top: 4vh;"><em>( Stupact have the service fee cuts according to your rewards.Increase in rewards means decrease in price cuts. )</em>
+<p style="margin-top:5vh;">Alloted price:<span id="alloted">Rs.0</span></p>
+<p>Service fee cut:<span id="servicefee">0%</span></p>
+<p>You'll receive:<span id="totalfee">Rs:0</span></p>
+</p>
+<button onclick="location.href='{% url 'stumart' %}'" 
+style="border:0px;padding:2vh 1vw;background-color:rgba(255, 255, 255, 0.507);border-radius:12px;margin-left: 25%;margin-top:7vh;">Back to stumart</button>
+</div>
+</div>
 <script>
+    var value="{{verify}}"
+    if(value=="True"){
+    $("#verifycheck").html("Great! Your account is verified")
+    
 
+    $("#verifycheck").css("color","green")}
+    else{
+        $("#verifycheck").html("Your account is unverified.<br>Please verify it first")
+        $("#verifycheckicon").html("report_problem")
+        $("#verifycheckicon").css("color","crimson")
+    $("#verifycheck").css("color","red")
+    }
+    var paycut=0
+    if({{rewards}}<100)
+        paycut=30;
+    else if({{rewards}}<300)
+        paycut=25
+    else if({{rewards}}<500)
+        paycut=20
+    else
+        paycut=15
+    $("#servicefee").html(paycut+"%")
     var getimagepath = document.getElementById("img");
     console.log(getimagepath);
     getimagepath.addEventListener('change', function () {
@@ -46,6 +80,11 @@
         }
         reader.readAsDataURL(getimagepath.files[0])
     })
+function calcprice() {
+var alloted=$("#price").val()
+$("#alloted").html("Rs."+alloted)
+$("#totalfee").html("Rs."+(alloted-(paycut*alloted)/100))
+}
 
 </script>
 </body>

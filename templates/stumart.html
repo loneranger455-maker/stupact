@@ -3,23 +3,34 @@
 <section class="items">
     {% for i in itemlist %}
    
-    <div class="singleitem" style="position:relative;">
-        <i class="material-icons" style="font-size:1.5vw;color:darkblue;position: relative;left: 8vw;">info</i>
-        <div class="info">
-            <p>{{i.discription}}</p>
-        </div>
-        <img style="height:16vw;width:16vw;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
+    <div  onclick="location.href='{% url "productinfo" i.id %}'" class="singleitem" style="position:relative;">
+      
+       
+           
+       
+
+        <img style="height:16vw;width:16vw;margin-top:2.5vh;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
+       
+        <p style="font-family:Patrick Hand;font-size: 1.4vw;font-family:Roboto-Regular;">{{i.title}}</p>
         <div id="details">
-        <p style="font-family:Patrick Hand;font-size: 1.4vw;">{{i.title}}</p>
         <h3 style="color:rgb(196, 62, 0);">Rs:{{i.price}}</h3>
-        </div>
-        <div class="butt" onclick="location.href='{% url "placeorder" i.id %}'">Order</div>
+        <p>Seller:
+            {% if i.verify == False %}<span style="color:crimson;">unverified</span>
+            {% else %} 
+            <span style="color:green;">verified</p>
+                {% endif %} 
+        </p>
+    </div>
+       
     </div>
   
     {% endfor %}
 </section>
 
+
 </main>
+{% include "stumart/paginate.html" %}
+<br><br><br>
 </body>
 
 </html>

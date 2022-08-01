@@ -1,0 +1,5 @@
+.dashboard{
+    height: 70vh;
+    width: 30vw;
+    background-image: linear-gradient(to bottom right,rgb(29, 2, 29),rgb(185, 42, 66));
+}

@@ -55,8 +55,8 @@
             <div id="center">
                 <a  href="{% url 'home' %}" class= {% if request.path == "/home/" %}"activate" {% else %} "normal" {% endif %}>Home</a>
                 <a href="{% url 'servicestab' %}" class={% if request.path == "/services/" %}"activate" {% else %} "normal"{% endif %}>Services</a>
-                <a href="{% url 'stumart' %}" class={% if request.path == "/stumart" %}"activate" {% else %} "normal"{% endif %}>StuMART</a>
-                <a href="">Events</a>
+                <a href="{% url 'stumart' %}" class={% if request.path == "/stumart" or stucheck == "true" %}"activate" {% else %} "normal"{% endif %}>StuMART</a>
+                <a href="{% url 'tutor_intro' %}" class={% if request.path == "/tutor/" %}"activate" {% else %} "normal"{% endif %}>Tutor</a>
             </div>
             <div id="right">
 

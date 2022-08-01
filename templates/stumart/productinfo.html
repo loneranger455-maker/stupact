@@ -1,0 +1,58 @@
+{% include "navbar.html" %}
+<link href="/static/productinfo.css" rel="stylesheet">
+<link href="/static/stumart.css" rel="stylesheet">
+
+<div style="display:flex;width:88vw;position: relative;" class="infobox">
+<div class="left">
+<img style="height:20vw;width:20vw;" src="/media/{{object.image}}"></div>
+<div><h1>{{object.title}}</h1>
+<p style="margin-top:5px;font-size:14px;color:green">posted {{time}} ago</p>
+<p>Category:{{object.category}}</p>
+<div id="details2">
+
+<h2 style="color:rgb(196, 62, 0);font-size:40px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Rs.{{object.price}}</h2>
+<p style="height:12vh;overflow-y:auto;width:35vw;">{{object.details}}</p>
+</div>
+<button class="butt" style="display:block;" onclick="location.href='{% url "placeorder" object.id %}'">Place Order</button>
+</div>
+<div style="position: absolute;right: 0px;
+width:20vw;background-color:rgba(255, 255, 255, 0.281);border-radius: 12px;height: 20vw;">
+
+        {% if object.verifycheck == False %}
+        <i class="material-icons" d="verifycheckicon" style="margin-left:42%;margin-top:5%;;font-size:36px;color:red">report_problem</i>
+        <h3 style="color:crimson;margin-left:2.5vw;">Seller account is unverified</h3>
+        {% else %} 
+        <i class="material-icons" id="verifycheckicon" style="margin-left:42%;margin-top:5%;;font-size:36px;color:rgb(10, 10, 71)">check_circle</i>
+        <h3 style="margin-left:2.5vw;">Seller account is verified</h3>
+            {% endif %} 
+        <p style="font-style:italic;padding:5vh 2.5vw">(Verified users are trusted by stumart.We cant guarantee product delivery with unverified users.)</p>
+</div>
+</div>
+<h3 style="margin:5vh 0vw 0vw 6vw;">You may like ordering</h3>
+<section class="items">
+    {% for i in itemlist %}
+   
+    <div  class="singleitem" style="margin-top:0px;position:relative;">
+        
+       
+        <img onclick="location.href='{% url "productinfo" i.id %}'" style="height:16vw;width:16vw;margin-top:2.5vh;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
+       
+        <p style="font-family:Patrick Hand;font-size: 1.4vw;font-family:Roboto-Regular;">{{i.title}}</p>
+        <div id="details">
+        <h3 style="color:rgb(196, 62, 0);font-size: 1.3vw;">Rs:{{i.price}}</h3>
+        <p>Seller:
+            {% if i.verify == False %}<span style="color:crimson;">unverified</span>
+            {% else %} 
+            <span style="color:green;">verified</p>
+                {% endif %} 
+        </p>
+        
+        </div>
+       
+    </div>
+  
+    {% endfor %}
+</section>
+<br><br>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.left{
+    width: 30%;
+    height: 50%;
+    
+}
+.infobox{
+    margin-top: 4%;
+    margin-left: 6vw;
+}
+#details2{
+    margin-top: 2vh;
+}
+#details2>h3{
+    font-size: 30px;
+    
+}

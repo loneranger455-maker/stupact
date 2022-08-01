@@ -159,15 +159,7 @@ input[type=password] {
     background-position: 5% 50%;
     background-repeat: no-repeat;
 }
-.err{
-    display:block;
-    font-size: 1.5vw;
-    background-color: white;
-    width: 15vw;
-    color:crimson;
-    text-align: center;
-    border-radius:20px;
-}
+
 .tick,.cross{
     font-size: 1.5vw;
     display:inline-block;

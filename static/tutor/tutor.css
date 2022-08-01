@@ -52,7 +52,7 @@ a {
 }
 
 
-nav a::after {
+a::after {
     content: '';
     position: absolute;
     background-color:black;
@@ -63,11 +63,11 @@ nav a::after {
     transition: 0.3s;
 }
 
-nav a:hover{
+a:hover{
     color:crimson;
 }
 
-nav a:hover::after {
+a:hover::after {
     width: 100%;
     background-color:black;
 }
@@ -125,4 +125,27 @@ nav a:hover::after {
     color: purple;
     margin-top: 6px;
     margin-left: 14vw;
+}
+.tutorinfo{
+    display: flex;
+    width: 88vw;
+    margin-top: 8vh;
+    margin-left: 6vw;
+    height: 76vh;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.205);
+}
+.tutorbutt{
+    background-image: linear-gradient(to bottom right,rgb(29, 2, 29),rgb(185, 42, 66));
+    height: 8vh;
+    width: 16vw;
+    color: white;
+    font-family: Lobster Two;
+    transition: background-image 5s ease-out;
+    border-radius: 25px;
+    border: transparent;
+    font-size: 1.6vw;
+}
+.tutorbutt:hover{
+    background-image: linear-gradient(to bottom right,rgb(165, 35, 57),rgb(148, 3, 148));
 }

@@ -1,11 +1,28 @@
 <title>StuMart</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/static/stumart.css">
+<link rel="stylesheet" href="/static/pagination.css">
+
 <script src="/static/javascript/stumart.js"></script>
 
+<dialog class="modal" id="modal3" style="height:30vh;">
+    <p style="display:inline-block;color:red;margin-left: 3vw;margin-top: 2vh;" id="error"></p>
+    <i class="material-icons" id="closeit" style="z-index:2;font-size:24px;">highlight_off</i>
+    <h2 style="margin-left:1.5vw;margin-bottom:3vh">You cannot place item without completing all details of your profile!!</h2>
+    <div>
+    <button id="yes"  class="takemethere" onclick="location.href='{% url 'updateinfo' %}'"
+    style="border:transparent;background-color:crimson;color:white;height:6vh;width:10vw;"
+    >Take me there</button>
+    <button id="close_thisit" class="takemethere"
+    style="border:transparent;margin-left:1vw;background-color:crimson;color:white;height:6vh;width:10vw;">Not now</button>
+</div>
+    
+</dialog>
     <main>
 <section class="topbar">
-    <button class= {% if request.path == "/stumart/placeproduct" %}"activated_button" {% else %} "normal_button" {% endif %} onclick="location.href='{% url 'productmenu' tabvalue='placeproduct' %}'">Place a product</button>
+    <button class= {% if request.path == "/stumart/placeproduct" %}"activated_button" {% else %} "normal_button" {% endif %} 
+    {% if check == 0 %} onclick="location.href='{% url 'productmenu' tabvalue='placeproduct' %}'" 
+    {% else %} onclick="showdialogbox()" {% endif %}>Place a product</button>
     <button class= {% if request.path == "/stumart/myproducts" %}"activated_button" {% else %} "normal_button" {% endif %} onclick="location.href='{% url 'productmenu' tabvalue='myproducts' %}'">My products</button>
    
         <select name="category" id="category" onchange="redirectthis()">
@@ -27,5 +44,20 @@
         value1=document.getElementById("category").value
         console.log(value1)
         window.location.href="{% url 'searchbycategory' category=12345 %}".replace(/12345/, value1.toString());
+    }
+    function showdialogbox(){
+        const modal = document.querySelector('#modal3');
+    modal.showModal();
+    const closeModal = document.querySelector('#closeit');
+    const close2=document.querySelector('#close_thisit');
+ 
+    
+    
+    closeModal.addEventListener('click', () => {
+        modal.close();
+    })
+    close2.addEventListener('click', () => {
+        modal.close();
+    })
     }
 </script>

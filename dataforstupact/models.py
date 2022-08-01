@@ -17,6 +17,7 @@ class mymodel(models.Model):
     image=models.ImageField(upload_to="",default="user.svg")
     phonenumber=models.CharField(max_length=15,blank=True)
     reward=models.IntegerField(default=0,blank=True)
+    verified=models.BooleanField(default=False,blank=True)
 
 class stumartmodel(models.Model):
     id=models.UUIDField(primary_key=True,default=uuid.uuid4)
@@ -26,6 +27,8 @@ class stumartmodel(models.Model):
     price=models.IntegerField(default=0)
     details=models.TextField(blank=True)
     category=models.CharField(max_length=30,default="other")
+    time=models.DateTimeField(auto_now_add=True,blank=True)
+    verify=models.BooleanField(default=False,blank=True)
 
 class order_list(models.Model):
     buyer=models.CharField(max_length=30)
@@ -46,3 +49,8 @@ class notifications(models.Model):
     status=models.CharField(max_length=8,default="unseen")
     # time=models.CharField(max_length=20,default=datetime.now().strftime("%Y%m%d%H%M%S"))
     time=models.DateTimeField(auto_now_add=True)
+
+class verifyrequest(models.Model):
+    username=models.CharField(max_length=30)
+    filevalue=models.FileField(upload_to="verify/")
+

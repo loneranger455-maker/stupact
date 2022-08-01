@@ -5,9 +5,11 @@ from django.http import HttpResponse,JsonResponse
 from django.shortcuts import redirect, render
 from requests import delete, session
 from dataforstupact.models import mymodel
-from dataforstupact.models import stumartmodel,order_list,notifications
-import requests 
-import os
+from dataforstupact.models import stumartmodel,order_list,notifications,verifyrequest
+from dataforstupact.forms import register_as_tutor
+import requests,os,random
+from django.contrib import messages
+from django.core.paginator import Paginator
 import uuid
 from datetime import datetime, timezone
 def signup(request):
@@ -68,10 +70,11 @@ def signup(request):
                 valuestobesaved.save()
                 valuestobesaved=notifications(username=username,notify="Welcome to stumart family.Hope you will like our services.",status="unseen")
                 valuestobesaved.save()
-                error="success"
-               
+                messages.add_message(request, messages.SUCCESS, "Account created sucessfully.You can log in to your account now.")
+                return redirect("/login")
         except:
             pass
+
         data={
             "error":error,
             "username":username,
@@ -125,10 +128,11 @@ def login(request):
         except:
             error="user dont exist"
             sym1="✘"
+        messages.add_message(request, messages.ERROR, error)
     else:
         usernm=" "
     
-    data={"error":error,
+    data={"error":"error",
             "username":usernm,
             "sym1":sym1,
             "sym2":sym2
@@ -154,7 +158,7 @@ def user(request):
         allobjects.image=image1
         allobjects.save()
         request.session["image"]=allobjects.image.url
-    return render(request,"account.html",{"object":allobjects,
+    return render(request,"account.html",{"object":allobjects,"form":register_as_tutor
     })
 
 def logout(request):
@@ -164,34 +168,53 @@ def logout(request):
 
 #stumart rendering function
 def stumartfunc(request):
+    
     variable=stumartmodel.objects.all()
+    user=mymodel.objects.get(username=request.session["Username"])
+    
+    if len(user.phonenumber)<10 or len(user.first_name)<3 or len(user.last_name)<3:
+        check=1
+    else:
+        check=0
     data=list()
+
     if request.method=="POST":
         value=request.POST.get("search")
         allobj=[i.title for i in variable]
         allobj2=[i for i in allobj if i[0:len(value)]==value]
         variable=[i for i in variable if i.title in allobj2 ]
     for i in variable:
-        if i.username!=request.session["Username"]:
+        if i.username!=request.session["Username"] and i.verify == False:
             temp=dict()
             temp["id"]=i.id
+            temp["verify"]=mymodel.objects.get(username=i.username).verified
             temp["username"]=i.username
             temp["title"]=i.title
             temp["image"]=i.image 
             temp["price"]=i.price  
             temp["discription"]=i.details
+            temp["time"]=timeagofunc(i.time)
             data.append(temp)
-       
+    paginate=Paginator(data,8)
+    pageno=request.GET.get("page")
+    page=paginate.get_page(pageno)
     data2={
-        "itemlist":data,
-        "category":"all"
+        "itemlist":page,
+        "category":"all",
+        "check":check,
+        "count":range(1,paginate.num_pages+1)
     }
     return render(request,"stumart.html",data2)
 
 #for product menu in stumart
 
 def productmenu(request,tabvalue):
-   if tabvalue=="myproducts":
+    user=mymodel.objects.get(username=request.session["Username"])
+    if len(user.phonenumber)<10 or len(user.first_name)<3 or len(user.last_name)<3:
+        check=1
+    else:
+        check=0
+    if tabvalue=="myproducts":
             allobjects=stumartmodel.objects.all()
             allobjects=[i for i in allobjects if i.username==request.session["Username"] ]
             data=[]
@@ -210,12 +233,17 @@ def productmenu(request,tabvalue):
                     temp["status"]=""
                 
                 data.append(temp)
-        
+            paginate=Paginator(data,8)
+            pageno=request.GET.get("page")
+            page=paginate.get_page(pageno)
             data2={
-            "itemlist":data,
+            "itemlist":page,
+            "check":check,
+            "stucheck":"true",
+            "count":range(1,paginate.num_pages+1)
         }
             return render(request, "stumart/myproducts.html",data2)
-   elif tabvalue=="placeproduct":
+    elif tabvalue=="placeproduct":
         if request.method == "POST":
             title=request.POST.get("title")
             category=request.POST.get("category")
@@ -230,17 +258,48 @@ def productmenu(request,tabvalue):
             valuestobesaved=notifications(username=request.session["Username"],notify="You have obtained 20 reward points for placing the item.Keep going..",status="unseen")
             valuestobesaved.save()
             return redirect('/stumart')
-        return render(request, "stumart/placeproduct.html")
-   elif tabvalue=="purchasehistory":
+        return render(request, "stumart/placeproduct.html",{"check":check,"rewards":user.reward,"verify":user.verified,"stucheck":"true"})
+    elif tabvalue=="purchasehistory":
        
         allobjects=order_list.objects.all()
         buyerobjects=[i for i in allobjects if i.buyer==request.session["Username"] ]
         sellerobjects=[i for i in allobjects if i.seller==request.session["Username"] ]
-        return render(request, "stumart/purchasehistory.html",{"buyer":buyerobjects,"seller":sellerobjects})
-   else:
+        return render(request, "stumart/purchasehistory.html",{"buyer":buyerobjects,"seller":sellerobjects,"stucheck":"true"})
+    else:
         return redirect('/stumart')
 
-
+def productinfo(request,uniquevalue):
+    data2=list()
+    count=0;
+    variable=stumartmodel.objects.all()
+    variable=[i for i in variable]
+    random.shuffle(variable)
+    for i in variable:
+        if i.username!=request.session["Username"] and i.id!=uniquevalue and i.verify == False:
+            temp=dict()
+            temp["id"]=i.id
+            temp["verify"]=mymodel.objects.get(username=i.username).verified
+            temp["username"]=i.username
+            temp["title"]=i.title
+            temp["image"]=i.image 
+            temp["price"]=i.price  
+            temp["discription"]=i.details
+            temp["time"]=timeagofunc(i.time)
+            data2.append(temp)
+            count+=1
+       
+        if count==4:
+            break 
+    allobjects=stumartmodel.objects.get(id=uniquevalue)
+    time=timeagofunc(allobjects.time)
+    verify=mymodel.objects.get(username=allobjects.username).verified
+    data={"object":allobjects,
+    "verifycheck":verify,
+    "time":time,
+    "itemlist":data2,
+    "stucheck":"true"
+    }
+    return render(request,"stumart/productinfo.html",data)
 #for ordering product
 def orderproduct(request,uniquevalue):
     allobjects=stumartmodel.objects.get(id=uniquevalue)
@@ -262,6 +321,9 @@ def orderproduct(request,uniquevalue):
         print(payment)
         if payment=="cod":
             save2=order_list(first_name=fname,last_name=lname,phonenumber=phonenumber,region=region,buyer=request.session["Username"],seller=allobjects.username,product=str(allobjects.id),delivery_charge=disc,price=allobjects.price,status="Order Verified",title=allobjects.title)
+            save2.save()
+            save2=stumartmodel.objects.get(id=int(uniquevalue))
+            save2.verify=True
             save2.save()
             objforreward=mymodel.objects.get(username=request.session["Username"])
             objforreward.reward+=20
@@ -285,10 +347,27 @@ def orderproduct(request,uniquevalue):
                 'fu':'http://merchant.com.np/page/esewa_payment_failed?q=fu'}
             resp = requests.post(url, d)
             print(resp)
-    return render(request, "stumart/orderproduct.html",{"object":allobjects,"myobject":myobject})
+    return render(request, "stumart/orderproduct.html",{"stucheck":"true","object":allobjects,"myobject":myobject})
 
 #for notifications
 
+def timeagofunc(time):
+            today = datetime.now(timezone.utc)
+            diff=today-time
+           
+            diff=str(diff).split(':')
+            diff=[i[0:2] for i in diff]
+            times=["secs","mins","hrs","days","months","years"]
+            ans=""
+            try:
+                
+                diff.remove('0')
+                diff.remove('00')
+            except:
+                pass
+          
+            ans=diff[0]+times[len(diff)-1]
+            return(ans)
 
 def notification(request):
     timecounter=[]
@@ -303,35 +382,7 @@ def notification(request):
                 i.save()
             
             notifylist.append(i.notify)
-            today = datetime.now(timezone.utc)
-            diff=today-i.time
-            # diff=int(datetime.now().strftime("%Y%m%d%H%M%S"))-int(i.time)
-            # if(diff<100):
-            #         diff2=str(diff)+"sec"
-            # elif(diff<10000):
-            #         diff2=str(int(diff/100))+"min"
-            # elif(diff<1000000):
-            #         diff2=str(int(diff/10000))+"hr"
-            # elif(diff<100000000):
-            #         diff2=str(int(diff/1000000))+"day"
-            # else:
-            #         diff2=str(int(diff/1000000000))+"months"
-            diff=str(diff).split(':')
-            diff=[i[0:2] for i in diff]
-            times=["secs","mins","hrs","days","months","years"]
-            ans=""
-            try:
-                
-                diff.remove('0')
-                diff.remove('00')
-            except:
-                pass
-            counter=len(diff)-1
-            for i in range(0,counter+1):
-                ans=ans+diff[i]+times[counter-i]+" "
-
-            print(diff)
-            timecounter.append(ans)
+            timecounter.append(timeagofunc(i.time))
                    
     data={
         "notifications":notifylist,
@@ -461,21 +512,47 @@ def searchbycategory(request,category):
     if category=="all":
         return redirect("/stumart")
     for i in variable:
-        if i.username!=request.session["Username"] and i.category==category:
+        if i.username!=request.session["Username"] and i.category==category and i.verify == False:
             temp=dict()
+            temp["verify"]=mymodel.objects.get(username=i.username).verified
             temp["id"]=i.id
             temp["username"]=i.username
             temp["title"]=i.title
             temp["image"]=i.image 
             temp["price"]=i.price  
             temp["discription"]=i.details
+            temp["time"]=timeagofunc(i.time)
             data.append(temp)
         
-       
+    paginate=Paginator(data,8)
+    pageno=request.GET.get("page")
+    page=paginate.get_page(pageno)   
     data2={
-        "itemlist":data,
+        "itemlist":page,
         "category":category,
+        "stucheck":"true",
+        "count":range(1,paginate.num_pages+1)
     }
+    
     return render(request,"stumart.html",data2)
     
-    
+def tutor(request):
+    return render(request,"tutor.html")
+def tutor_dashboard(request):
+    return render(request, "tutor/tutor_register.html")
+def verify(request):
+    check=request.GET["check"]
+    usernamelist2=verifyrequest.objects.all()
+    usernamelist=[i.username for i in usernamelist2]
+    print(check)
+    if check=='0':
+        fileval=request.GET["file"]
+        verifyrequest(username=request.session["Username"],filevalue=fileval).save()
+        data={"checker":"sent"}
+        
+    else:
+        if request.session["Username"] in usernamelist:
+            data={"checker":"present"}
+        else:
+            data={"checker":"notpresent"}
+    return JsonResponse(data)

@@ -233,3 +233,79 @@ input[type=password]::placeholder{
     color:red;
     cursor: pointer;
 }
+.mymodal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.432);
+    overflow: auto; /* Enable scroll if needed */
+   
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #bbe2e2;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 12px;
+    align-content: center;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+  }
+  .modal-content button{
+    margin-top: 4vh;
+    background-color: crimson;
+    height: 4vh;
+    color: white;
+    border: 0px;
+    width: 6vw;
+
+  }
+  /* The Close Button */
+  .close_verify {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close_verify:hover,
+  .close_verify:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modallogout{
+    box-sizing: border-box;
+    position:absolute;
+    left: 37.5vw;
+    top:27.5vh;
+    height: 28vh;
+    color:white;
+    
+    width: 25vw;
+    border-radius: 12px;
+    border: transparent;
+    background-color: rgb(11, 40, 168);
+
+  }
+  .modallogout button{
+    margin-top: 5vh;
+    background-color: crimson;
+    margin-left: 3vw;
+    border: 0px;
+    height: 4vh;
+    width: 6vw;
+    color: white;
+  }
+  .modallogout::backdrop{
+    backdrop-filter: blur(1.5px);
+  }
