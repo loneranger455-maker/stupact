@@ -17,8 +17,7 @@
 </div>
 <div style="position: absolute;right: 0px;
 width:20vw;background-color:rgba(255, 255, 255, 0.281);border-radius: 12px;height: 20vw;">
-
-        {% if object.verifycheck == False %}
+        {% if verifycheck == False %}
         <i class="material-icons" d="verifycheckicon" style="margin-left:42%;margin-top:5%;;font-size:36px;color:red">report_problem</i>
         <h3 style="color:crimson;margin-left:2.5vw;">Seller account is unverified</h3>
         {% else %} 
@@ -28,14 +27,15 @@ width:20vw;background-color:rgba(255, 255, 255, 0.281);border-radius: 12px;heigh
         <p style="font-style:italic;padding:5vh 2.5vw">(Verified users are trusted by stumart.We cant guarantee product delivery with unverified users.)</p>
 </div>
 </div>
-<h3 style="margin:5vh 0vw 0vw 6vw;">You may like ordering</h3>
+<hr style="margin:5vh 6vw">
+<p style="font-size:25px;font-weight:600;margin:1vh 1vw 1vh 6vw;">You might like to order</p>
 <section class="items">
     {% for i in itemlist %}
    
-    <div  class="singleitem" style="margin-top:0px;position:relative;">
+    <div onclick="location.href='{% url "productinfo" i.id %}'"   class="singleitem" style="margin-top:0px;position:relative;">
         
        
-        <img onclick="location.href='{% url "productinfo" i.id %}'" style="height:16vw;width:16vw;margin-top:2.5vh;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
+        <img style="height:16vw;width:16vw;margin-top:2.5vh;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
        
         <p style="font-family:Patrick Hand;font-size: 1.4vw;font-family:Roboto-Regular;">{{i.title}}</p>
         <div id="details">

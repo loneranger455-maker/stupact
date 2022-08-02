@@ -354,19 +354,22 @@ def orderproduct(request,uniquevalue):
 def timeagofunc(time):
             today = datetime.now(timezone.utc)
             diff=today-time
-           
-            diff=str(diff).split(':')
-            diff=[i[0:2] for i in diff]
-            times=["secs","mins","hrs","days","months","years"]
-            ans=""
-            try:
-                
-                diff.remove('0')
-                diff.remove('00')
-            except:
-                pass
-          
-            ans=diff[0]+times[len(diff)-1]
+            diff2=str(diff).split(",")
+            if len(diff2)==1:
+                diff=str(diff).split(':')
+                diff=[i[0:2] for i in diff]
+                times=["secs","mins","hrs"]
+                ans=""
+                try:
+                    
+                    diff.remove('0')
+                    diff.remove('00')
+                except:
+                    pass
+            
+                ans=diff[0]+times[len(diff)-1]
+            else:
+                ans=diff2[0]
             return(ans)
 
 def notification(request):
