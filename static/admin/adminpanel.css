@@ -1,0 +1,106 @@
+*{
+    padding: 0px;
+    margin: 0px;
+
+}
+body{
+    overflow: hidden;
+}
+:root{
+    --colorcode:rgb(37, 37, 68);
+}
+.dashboard{
+    display: inline-flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 100vh;
+    background-color:var(--colorcode);
+}
+.dashboard>div{
+    padding:3vh 2vw;
+    box-sizing: border-box;
+    font-size: 22px;
+    color: white;
+    height: 12vh;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ 
+    
+}
+.active{
+    background-color: black;
+    color: white;
+}
+.gridlayout{
+    position: relative;
+    top: 10vh;
+    left: 2vw;
+    display: grid;
+    width: 95%;
+    grid-template-columns: 12vw 18vw 18vw 20vw
+    
+}
+.gridlayout p{
+    text-align: center;
+border: 0.5px solid rgba(184, 183, 183, 0.26);
+padding: 5px;
+}
+#title p{
+    padding: 8px;
+    font-weight: 600;
+}
+.main{
+    display: inline-flex;
+    flex-direction: column;
+    width: 75vw;
+    height: 100vh;
+}
+.buttonslist{
+    display: flex;
+
+}
+.buttonslist button{
+    position: relative;
+    background-color: crimson;
+    width: 7vw;
+    border: 0px;
+    padding: 6px;
+   border-radius: 12px;
+    margin-left: 2vw;
+    color: white;
+}
+.buttonslist i{
+    font-size: 20px;
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    
+}
+.userbox{
+    position: relative;
+
+    height: 96%;
+    display: flex;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x:hidden;
+    flex-wrap: wrap;
+}
+.userbox>div{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 21vw;
+    border: 2px solid var(--colorcode);
+    /* background-image: linear-gradient(to bottom right,var(--colorcode),white); */
+    border-radius: 12px;
+    margin-left: 3vw;
+    margin-top: 6vh;
+}
+.userbox div p{
+    margin-left: 2vw;
+    color: black;
+}
+.userbox div p span{
+    color: blue;
+}

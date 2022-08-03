@@ -1,0 +1,20 @@
+{% extends "admin/adminpanel.html" %}
+
+{% block verify %}
+<div class="userbox">
+{% for i in objects %}
+<div>
+    <img src="/media/{{i.image}}" style="height:8vw;width:8vw;margin:2vh 30%;">
+    <p><span>username:</span>{{i.username}}</p>
+    <p><span>Email:</span>{{i.email}}</p>
+    <p><span>First name:</span>{{i.first_name}}</p>
+    <p><span>Last name:</span>{{i.last_name}}</p>
+    <p><span>Phonenumber:</span>{{i.phonenumber}}</p>
+    <p><span>Batch:</span>{{i.batch}}</p>
+    <p><span>Faculty:</span>{{i.faculty}}</p>
+    <p><span>Verify:</span>{{i.verified}}</p>
+    <p><span>Rewards:</span>{{i.reward}}</p>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

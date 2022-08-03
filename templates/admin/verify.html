@@ -1,0 +1,26 @@
+{% extends "admin/adminpanel.html" %}
+
+{% block verify %}
+<div>
+    <div class="gridlayout" id="title">
+        <p>Username</p>
+        <p>Email</p>
+        <p>file</p>
+        <p>tools</p>
+        
+    </div>
+    <div class="gridlayout" id="data">
+    {% for i in objects %}
+        <p>{{i.username}}</p>
+        <p>Rangerlone547@gmail.com</p>
+        <p><a href="/media/{{i.filevalue}}" download>{{i.filevalue}}</a></p>
+        <p class="buttonslist"><button
+            onclick="location.href='{% url 'verifycontrol' value=0 username=i.username %}'"
+            > <i class="material-icons">check_circle</i>Verify</button>
+            <button
+            onclick="location.href='{% url 'verifycontrol' value=1 username=i.username %}'"
+            ><i class="material-icons">delete_forever</i>Decline</button></p>
+   {% endfor %}
+    </div>
+</div>
+{% endblock %}

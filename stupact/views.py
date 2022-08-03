@@ -148,17 +148,25 @@ def start(request):
 def user(request):
     allobjects=mymodel.objects.get(username=request.session["Username"])
     if request.method == "POST":
-        image1=request.FILES["img"]
-        temp=allobjects.image.url
-        try:
-             os.remove(str(Path(__file__).resolve().parent.parent)+temp)
-        except:
-            pass
-        print(temp)
-        allobjects.image=image1
-        allobjects.save()
-        request.session["image"]=allobjects.image.url
-    return render(request,"account.html",{"object":allobjects,"form":register_as_tutor
+        if 'profilechange' in request.POST:
+            image1=request.FILES["img"]
+            
+            temp=allobjects.image.url
+            try:
+                if temp!="user.png":
+                    os.remove(str(Path(__file__).resolve().parent.parent)+temp)
+            except:
+                pass
+            print(temp)
+            allobjects.image=image1
+            allobjects.save()
+            request.session["image"]=allobjects.image.url
+        elif 'verifyprofile' in request.POST:
+            file1=request.FILES["filevalue"]
+            print("file:")
+            print(file1)
+            verifyrequest(username=request.session["Username"],filevalue=file1).save()
+    return render(request,"account.html",{"object":allobjects
     })
 
 def logout(request):

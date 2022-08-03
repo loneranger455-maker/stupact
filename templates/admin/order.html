@@ -1,0 +1,38 @@
+{% extends "admin/adminpanel.html" %}
+
+{% block verify %}
+<div>
+    <div class="gridlayout" style=" grid-template-columns:12vw 12vw 8vw 14vw 4vw 4vw 4vw 17vw;" id="title">
+        <p>Buyer</p>
+        <p>Seller</p>
+        <p>Region</p>
+        <p>title</p>
+        <p>price</p>
+        <p>del</p>
+        <p>total</p>
+        <p>tools</p>
+        
+        
+    </div>
+    <div class="gridlayout"  style=" grid-template-columns:12vw 12vw 8vw 14vw 4vw 4vw 4vw 17vw;" id="data">
+    {% for i in objects %}
+    {% if i.status != 'completed' %}
+        <p>{{i.buyer}}</p>
+        <p>{{i.seller}}</p>
+        <p>{{i.region}}</p>
+        <p>{{i.title}}</p>
+        <p>{{i.price}}</p>
+        <p>{{i.delivery_charge}}</p>
+        <p>
+            {{ i.price | add:i.delivery_charge}}</p>
+        <p class="buttonslist"><button
+            onclick="location.href='{% url 'ordercontrol' value=0 productid=i.product %}'"
+            > <i class="material-icons">check_circle</i>complete</button>
+            <button style="margin-left:5px;"
+            onclick="location.href='{% url 'ordercontrol' value=1 productid=i.product %}'"
+            ><i class="material-icons">delete_forever</i>Decline</button></p>
+            {% endif %}
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+import dataforstupact.views as views2
 
 
 urlpatterns = [
@@ -41,7 +42,11 @@ urlpatterns = [
     path('tutor/',views.tutor,name="tutor_intro"),
     path('tutor/dashboard',views.tutor_dashboard,name="dashboard"),
     path('verify/',views.verify,name="verify"),
-    path('/stumart/productinfo/<uuid:uniquevalue>',views.productinfo,name="productinfo")
+    path('/stumart/productinfo/<uuid:uniquevalue>',views.productinfo,name="productinfo"),
+    path('adminpanel',views2.adminstart),
+    path('adminpanel/<str:menuvalue>',views2.adminpanel,name="adminpanel"),
+    path('adminpanel/verify/<int:value>/<str:username>',views2.verifycontrol,name="verifycontrol"),
+    path('adminpanel/order/<int:value>/<str:productid>',views2.ordercontrol,name="ordercontrol")
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/admin/adminpanel.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>adminpanel</title>
+</head>
+<body>
+    <section class="dashboard">
+    
+    
+    <h1 style="color:white;margin:4vh 2vw 8vh 2vw;">STUPACT</h1>
+    <div {% if page == 0 %}class="active" {% endif %} 
+    onclick="location.href='{% url 'adminpanel' menuvalue='allusers' %}'">All Users</div>
+    <div {% if page == 1 %}class="active"{% endif %} 
+    onclick="location.href='{%  url 'adminpanel' menuvalue='verifylist' %}'">Verify request</div>
+    <div {% if page == 2 %}class="active" {% endif %}
+    onclick="location.href='{% url 'adminpanel' menuvalue='orderlist' %}'">Ordered products</div>
+    <!-- <div {% if page == 0 %}class="active" {% endif %} 
+    onclick="location.href='{% url 'adminpanel' menuvalue='allusers' %}'">All Users</div>
+    </section> -->
+</section>
+<section class="main">
+    <div style="height:20vh;width:100%;">
+        <div style="display:flex;float: right;">
+            <i class="fa fa-user-circle-o" style="font-size:36px"></i>
+            <span style="margin-top:10px;margin-left:0.7vw;">Admin</span>
+            </div>
+        <input style="padding:1vw 1vh;border:1px solid rgb(34, 31, 31);width:18vw;border-radius:12px;position: relative;left:40%;top:60%;" type="text" placeholder="Search..">
+    </div>
+    <br>
+    {% if page != 0 %}
+    <hr>
+    {% endif %}
+    
+  
+    
+   {% block verify %}
+   {% endblock %}
+   
+</section>
+</body>
+</html>

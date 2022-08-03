@@ -22,7 +22,7 @@
                         {% csrf_token %}
                         <input type="file"  onchange="onpicchange()" name="img" accept="image/*">
                     
-                        <input style="display: none;" id="submit_photo" type="submit" value=" submit file ">
+                        <input style="display: none;" id="submit_photo" type="submit" value=" submit file " name="profilechange">
                     </form>
                 </div>
             </div>
@@ -95,13 +95,16 @@
     <div id="myModal" class="mymodal">
         <span class="close_verify">&times;</span>
       <div class="modal-content">
-        
+        <form method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
         <h2 id="verify_title">Please verify your profile</h2>
         <div id="removable"> 
         <p>Send any file to verify your identity.Files like photos of identity card,hostel card or any other proof of identity is acceptable</p>
-        <input type="file" id="file" name="file">
+        <input type="file" id="file" name="filevalue">
+      
     </div>
-        <button  id="submit_file" onclick="livefetch('0')">Submit file</button>
+        <button  id="submit_file" type="submit" name="verifyprofile">Submit file</button>
+        </form>
       </div>
     
     </div>
@@ -181,7 +184,7 @@
            document.getElementById("verify_title").innerHTML="Your request is submitted.Your profile will be checked within next 24 hrs."
           
            $("#removable").remove()
-           $("#submit_file").html("Ok")
+           $("#submit_file").remove()
            document.getElementById("submit_file").onclick=function(){
             document.getElementById("myModal").style.display = "none";
            }}
