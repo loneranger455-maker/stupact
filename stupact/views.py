@@ -252,20 +252,24 @@ def productmenu(request,tabvalue):
         }
             return render(request, "stumart/myproducts.html",data2)
     elif tabvalue=="placeproduct":
-        if request.method == "POST":
-            title=request.POST.get("title")
-            category=request.POST.get("category")
-            price=request.POST.get("price")
-            discription=request.POST.get("textbox")
-            image=request.FILES["image"]
-            varia=stumartmodel(username=request.session["Username"],category=category,price=price,title=title,details=discription,image=image)
-            varia.save()
-            objforreward=mymodel.objects.get(username=request.session["Username"])
-            objforreward.reward+=20
-            objforreward.save()
-            valuestobesaved=notifications(username=request.session["Username"],notify="You have obtained 20 reward points for placing the item.Keep going..",status="unseen")
-            valuestobesaved.save()
-            return redirect('/stumart')
+        try:
+             if request.method == "POST":
+                title=request.POST.get("title")
+                category=request.POST.get("category")
+                price=request.POST.get("price")
+                discription=request.POST.get("textbox")
+                image=request.FILES["image"]
+                varia=stumartmodel(username=request.session["Username"],category=category,price=price,title=title,details=discription,image=image)
+                varia.save()
+                objforreward=mymodel.objects.get(username=request.session["Username"])
+                objforreward.reward+=20
+                objforreward.save()
+                valuestobesaved=notifications(username=request.session["Username"],notify="You have obtained 20 reward points for placing the item.Keep going..",status="unseen")
+                valuestobesaved.save()
+            
+                return redirect('/stumart')
+        except:
+                  messages.add_message(request, messages.ERROR, "All fields must be filled")
         return render(request, "stumart/placeproduct.html",{"check":check,"rewards":user.reward,"verify":user.verified,"stucheck":"true"})
     elif tabvalue=="purchasehistory":
        
@@ -312,49 +316,49 @@ def productinfo(request,uniquevalue):
 def orderproduct(request,uniquevalue):
     allobjects=stumartmodel.objects.get(id=uniquevalue)
     myobject=mymodel.objects.get(username=request.session["Username"])
-    if request.method=="POST":
-        fname=request.POST.get("fname")
-        lname=request.POST.get("lname")
-        phonenumber=request.POST.get("phone")
-        region=request.POST.get("region")
-        faculty=request.POST.get("faculty")
-        batch=request.POST.get("batch")
-        payment=request.POST.get("payment")
-        if region=="hostel":
-                disc=0
-        elif region=="lamachaur":
-                disc=20
-        else:
-                disc=50
-        print(payment)
-        if payment=="cod":
-            save2=order_list(first_name=fname,last_name=lname,phonenumber=phonenumber,region=region,buyer=request.session["Username"],seller=allobjects.username,product=str(allobjects.id),delivery_charge=disc,price=allobjects.price,status="Order Verified",title=allobjects.title)
-            save2.save()
-            save2=stumartmodel.objects.get(id=int(uniquevalue))
-            save2.verify=True
-            save2.save()
-            objforreward=mymodel.objects.get(username=request.session["Username"])
-            objforreward.reward+=20
-            objforreward.save()
-            valuestobesaved=notifications(username=request.session["Username"],notify="You have obtained 20 reward points for the order.Keep going..",status="unseen")
-            valuestobesaved.save()
-            valuestobesaved=notifications(username=request.session["Username"],notify="Thank you for the order.You have selected cash on delivery.You will get your product within some days.",status="unseen")
-            valuestobesaved.save()
-            return redirect('/stumart')
-        elif payment=="esewa":
-            url ="https://uat.esewa.com.np/epay/main"
-           
-            d = {'amt': allobjects.price,
-                'pdc': disc,
-                'psc': 0,
-                'txAmt': 0,
-                'tAmt': allobjects.price+disc,
-                'pid':'ee2c3ca1-696b-4cc5-a6be-2c40d929d453',
-                'scd':'EPAYTEST',
-                'su':'http://merchant.com.np/page/esewa_payment_success?q=su',
-                'fu':'http://merchant.com.np/page/esewa_payment_failed?q=fu'}
-            resp = requests.post(url, d)
-            print(resp)
+    try:
+        if request.method=="POST":
+                fname=request.POST.get("fname")
+                lname=request.POST.get("lname")
+                phonenumber=request.POST.get("phone")
+                region=request.POST.get("region")
+                faculty=request.POST.get("faculty")
+                batch=request.POST.get("batch")
+                payment=request.POST.get("payment")
+                if region=="hostel":
+                        disc=0
+                elif region=="lamachaur":
+                        disc=20
+                else:
+                        disc=50
+                print(payment)
+                if payment=="cod":
+                    save2=order_list(first_name=fname,last_name=lname,phonenumber=phonenumber,region=region,buyer=request.session["Username"],seller=allobjects.username,product=str(allobjects.id),delivery_charge=disc,price=allobjects.price,status="Order Verified",title=allobjects.title)
+                    save2.save()
+                    save2=stumartmodel.objects.get(id=int(uniquevalue))
+                    save2.verify=True
+                    save2.save()
+                   
+                    valuestobesaved=notifications(username=request.session["Username"],notify="Thank you for the order.You have selected cash on delivery.You will get your product within some days.",status="unseen")
+                    valuestobesaved.save()
+                    return redirect('/stumart')
+                elif payment=="esewa":
+                    url ="https://uat.esewa.com.np/epay/main"
+                
+                    d = {'amt': allobjects.price,
+                        'pdc': disc,
+                        'psc': 0,
+                        'txAmt': 0,
+                        'tAmt': allobjects.price+disc,
+                        'pid':'ee2c3ca1-696b-4cc5-a6be-2c40d929d453',
+                        'scd':'EPAYTEST',
+                        'su':'http://merchant.com.np/page/esewa_payment_success?q=su',
+                        'fu':'http://merchant.com.np/page/esewa_payment_failed?q=fu'}
+                    resp = requests.post(url, d)
+                    print(resp)
+    except:
+                messages.add_message(request, messages.ERROR, "All fields must be filled")
+                
     return render(request, "stumart/orderproduct.html",{"stucheck":"true","object":allobjects,"myobject":myobject})
 
 #for notifications

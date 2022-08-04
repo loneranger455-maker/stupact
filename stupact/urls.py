@@ -42,7 +42,7 @@ urlpatterns = [
     path('tutor/',views.tutor,name="tutor_intro"),
     path('tutor/dashboard',views.tutor_dashboard,name="dashboard"),
     path('verify/',views.verify,name="verify"),
-    path('/stumart/productinfo/<uuid:uniquevalue>',views.productinfo,name="productinfo"),
+    path('stumart/productinfo/<uuid:uniquevalue>',views.productinfo,name="productinfo"),
     path('adminpanel',views2.adminstart),
     path('adminpanel/<str:menuvalue>',views2.adminpanel,name="adminpanel"),
     path('adminpanel/verify/<int:value>/<str:username>',views2.verifycontrol,name="verifycontrol"),

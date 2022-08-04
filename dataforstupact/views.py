@@ -40,7 +40,17 @@ def ordercontrol(request,value,productid):
                
                 var1.status="completed"
                 var1.save()
+                objforreward=mymodel.objects.get(username=var1.seller)
+                objforreward.reward+=20
+                objforreward.save()
+                objforreward=mymodel.objects.get(username=var1.buyer)
+                objforreward.reward+=20
+                objforreward.save()
+                valuestobesaved=notifications(username=var1.buyer,notify="You have obtained 20 reward points for the completing order.Keep going..",status="unseen")
+                valuestobesaved.save()
                 notifications(username=var1.seller,notify="Your item has been sold sucessfully").save()
+                notifications(username=var1.seller,notify="You obtained 20 points for the sell.Great job.").save()
+
                 stumodal.delete()
         elif value==1:
         
