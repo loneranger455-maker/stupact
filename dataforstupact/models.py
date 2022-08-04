@@ -14,7 +14,7 @@ class mymodel(models.Model):
     email=models.EmailField(max_length=30)
     faculty=models.CharField(max_length=10,blank=True)
     batch=models.CharField(max_length=10,blank=True)
-    image=models.ImageField(upload_to="",default="user.svg")
+    image=models.ImageField(upload_to="",default="user.png")
     phonenumber=models.CharField(max_length=15,blank=True)
     reward=models.IntegerField(default=0,blank=True)
     verified=models.BooleanField(default=False,blank=True)
