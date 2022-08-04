@@ -48,5 +48,5 @@ urlpatterns = [
     path('adminpanel/verify/<int:value>/<str:username>',views2.verifycontrol,name="verifycontrol"),
     path('adminpanel/order/<int:value>/<str:productid>',views2.ordercontrol,name="ordercontrol")
 ]
-if settings.DEBUG:
-    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

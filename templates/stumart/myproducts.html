@@ -24,9 +24,10 @@
         {% endif %}
         <img style="height:16vw;width:16vw;border-radius:12px 12px 0px 0px;" src="/media/{{i.image}}">
         <div id="details2">
-        <h1>{{i.title}}</h1>
-        <h3 style="color:rgb(199, 71, 20);">Rs:{{i.price}}</h3>
-        
+            <p style="font-family:Patrick Hand;font-size: 1.4vw;font-family:Roboto-Regular;">{{i.title}}</p>
+            <div id="details">
+            <h3 style="color:rgb(199, 71, 20);">Rs:{{i.price}}</h3>
+        </div>
         </div>
     </div>
     {% endfor %}

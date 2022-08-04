@@ -261,10 +261,7 @@ def productmenu(request,tabvalue):
                 image=request.FILES["image"]
                 varia=stumartmodel(username=request.session["Username"],category=category,price=price,title=title,details=discription,image=image)
                 varia.save()
-                objforreward=mymodel.objects.get(username=request.session["Username"])
-                objforreward.reward+=20
-                objforreward.save()
-                valuestobesaved=notifications(username=request.session["Username"],notify="You have obtained 20 reward points for placing the item.Keep going..",status="unseen")
+                valuestobesaved=notifications(username=request.session["Username"],notify="Thank you for placing the product.Hope you will find a buyer soon",status="unseen")
                 valuestobesaved.save()
             
                 return redirect('/stumart')
@@ -507,8 +504,12 @@ def changepassword(request):
 
 def deleteproduct(request):
     productid=request.GET["id"]
+    temp=stumartmodel.objects.get(id=productid).image.url
     try:
+        
         object1=stumartmodel.objects.get(id=productid)
+        os.remove(str(Path(__file__).resolve().parent.parent)+temp)
+        print(temp)
         object1.delete()
     except:
         print(productid)
