@@ -50,7 +50,7 @@ def ordercontrol(request,value,productid):
                 valuestobesaved.save()
                 notifications(username=var1.seller,notify="Your item has been sold sucessfully").save()
                 notifications(username=var1.seller,notify="You obtained 20 points for the sell.Great job.").save()
-                temp=stumartmodel.image.url
+                temp=stumodal.image.url
                 os.remove(str(Path(__file__).resolve().parent.parent)+temp)
                 stumodal.delete()
         elif value==1:
