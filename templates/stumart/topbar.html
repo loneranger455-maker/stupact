@@ -1,9 +1,10 @@
+{% load static %}
 <title>StuMart</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/static/stumart.css">
-<link rel="stylesheet" href="/static/pagination.css">
+<link rel="stylesheet" href="{% static 'stumart.css' %}">
+<link rel="stylesheet" href="{% static 'pagination.css' %}">
 
-<script src="/static/javascript/stumart.js"></script>
+<script src="{% static 'javascript/stumart.js' %}"></script>
 
 <dialog class="modal" id="modal3" style="height:30vh;">
     <p style="display:inline-block;color:red;margin-left: 3vw;margin-top: 2vh;" id="error"></p>
@@ -39,10 +40,14 @@
         <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 </section>
-<div id="errorr" style="position:absolute;top:25%;width:88vw;margin-left: 6vw;">
+<div  style="position:absolute;top:25%;width:88vw;margin-left: 6vw;">
     {% if messages %}
     {% for i in messages %}
-    <div style="background-color:red;width: 100%;text-align:center;color: white;">{{i}}</div>
+    {% if i.tags == "success" %}
+    <div style="width: 100%;text-align:center;font-size: 25px;">{{i}}</div>
+    {% else %}
+    <div id="errorr" style="background-color:red;width: 100%;text-align:center;color: white;">{{i}}</div>
+    {% endif %}
     {% endfor %}
     {% endif %}
 </div>

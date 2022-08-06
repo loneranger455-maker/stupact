@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/navbar.css">
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lobster+Two&family=Pacifico&family=Patrick+Hand&family=Gentium+Book+Plus&family=PT+Sans&family=Poppins&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="fab.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
@@ -37,8 +38,8 @@
     </header>
     <title>StuMart</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/static/stumart.css">
-<script src="/static/javascript/stumart.js"></script>
+<link rel="stylesheet" href="{% static 'stumart.css' %}">
+<script src="{% static 'javascript/stumart.js' %}"></script>
 
     <main>
 <section class="topbar">

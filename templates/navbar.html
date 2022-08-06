@@ -59,11 +59,11 @@
             </div>
             <div id="right">
 
-                <a id="contact">
+                <a href="{% url 'contact' %}" id="contact">
                     Contact
                 </a>
                <button  style="display: flex;justify-content: center;align-items: center;"id="notified" onclick="shownotification()">
-                <img style="height:30px;width:30px;" src="/static/icons/notification-bell-5743.png">
+                <img style="height:30px;width:30px;" src="{% static 'icons/notification-bell-5743.png' %}">
                 <p id="unseen"></p>
             </button> 
                 <img src={{request.session.image}} style="border-radius:50%;height:30px;width:30px;"

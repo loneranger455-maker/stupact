@@ -1,5 +1,6 @@
+{% load static %}
 {% include "navbar.html" %}
-<link rel="stylesheet" href="/static/orderproduct.css">
+<link rel="stylesheet" href="{% static 'orderproduct.css' %}">
 <div id="errorr" style="position:absolute;top:5vh;width:88vw;margin-left: 6vw;z-index:23">
     {% if messages %}
     {% for i in messages %}
@@ -49,11 +50,11 @@
             <h2 style="margin-top:2.5vh;margin-left: 2vw;font-family:Gentium Book Plus;font-weight: 550;">Payment Method:</h2>
         <div style="margin-top:0.25vh;">
             <input type="radio"  name="payment" value="esewa">
-        <img style="height:2.5vw;width:10vw;margin: 0.3vh 0 0.3vh 0;" src="/static/eSewa-logo.png">
+        <img style="height:2.5vw;width:10vw;margin: 0.3vh 0 0.3vh 0;" src="{% static 'eSewa-logo.png' %}">
         </div>
         <div>
         <input type="radio"  name="payment" value="cod">
-        <img style="height:3vw;width:8vw" src="/static/cashondelivery.jpg">
+        <img style="height:3vw;width:8vw" src="{% static 'cashondelivery.jpg' %}">
         </div>
         
 

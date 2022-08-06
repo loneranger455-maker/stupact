@@ -31,6 +31,7 @@ urlpatterns = [
     path('user/',views.user,name="userbio"),
     path('user/logout',views.logout,name="logout"),
     path('stumart',views.stumartfunc,name="stumart"),
+    path('contact',views.contact,name="contact"),
     path('stumart/<str:tabvalue>',views.productmenu,name="productmenu"),
     path('stumart/order/<uuid:uniquevalue>',views.orderproduct,name="placeorder"),
     path('notification/',views.notification,name="notification"),
@@ -43,7 +44,7 @@ urlpatterns = [
     path('tutor/dashboard',views.tutor_dashboard,name="dashboard"),
     path('verify/',views.verify,name="verify"),
     path('stumart/productinfo/<uuid:uniquevalue>',views.productinfo,name="productinfo"),
-    path('adminpanel',views2.adminstart),
+    path('adminpanel/',views2.adminstart),
     path('adminpanel/<str:menuvalue>',views2.adminpanel,name="adminpanel"),
     path('adminpanel/verify/<int:value>/<str:username>',views2.verifycontrol,name="verifycontrol"),
     path('adminpanel/order/<int:value>/<str:productid>',views2.ordercontrol,name="ordercontrol")

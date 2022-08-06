@@ -189,8 +189,9 @@ def stumartfunc(request):
     if request.method=="POST":
         value=request.POST.get("search")
         allobj=[i.title for i in variable]
-        allobj2=[i for i in allobj if i[0:len(value)]==value]
+        allobj2=[i for i in allobj if value in i]
         variable=[i for i in variable if i.title in allobj2 ]
+        messages.add_message(request, messages.SUCCESS,"search results for:"+value)
     for i in variable:
         if i.username!=request.session["Username"] and i.verify == False:
             temp=dict()
@@ -572,3 +573,12 @@ def verify(request):
         else:
             data={"checker":"notpresent"}
     return JsonResponse(data)
+
+def contact(request):
+    # if request.method == POST:
+    #     username=request.POST.get("username")
+    #     phoneno=request.POST.get("phonenumber")
+    #     email=request.POST.get("email")
+    #     subject=request.POST.get("subject")
+    #     message=request.POST.get("message")
+    return render(request, "contact.html")

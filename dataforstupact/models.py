@@ -54,3 +54,7 @@ class verifyrequest(models.Model):
     username=models.CharField(max_length=30)
     filevalue=models.FileField(upload_to="verify/")
 
+# class queries(model.Model):
+#     username=models.CharField(max_length=30)
+#     message=models.TextField()
+#     subject=models.CharField(max_length=30)

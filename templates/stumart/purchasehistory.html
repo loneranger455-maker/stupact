@@ -1,7 +1,7 @@
 {% include "navbar.html" %}
-
+{% load static %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/static/stumart.css">
+<link rel="stylesheet" href="{% static 'stumart.css' %}">
 <main><div class="product-dashboard">
     <h3 style="margin:5% 28%">My Activities</h3>
     <button style="background-color: black;" class="btn" value="stumart">Stumart History</button>
@@ -22,7 +22,7 @@
     <div class="buyerhistory">
         <div class="purchbox">
             <div style="display:flex;margin:4vh 10vw;margin-right:0px;">
-            <img src="/static/icons/png/buy.png" style="height:3vw;width:3vw;">
+            <img src="{% static 'icons/png/buy.png' %}" style="height:3vw;width:3vw;">
             <h1 style="margin-top:2vh;margin-left: 1vw;">Purchase history</h1>
         </div>
         <span class="indicators_active" onclick="showdata(0)">Pending</span><span class="indicators" onclick="showdata(1)">Completed</span>
@@ -60,7 +60,7 @@
    
         <div class="purchbox">
             <div style="display:flex;margin:4vh 10vw">
-            <img src="/static/icons/png/sold.png" style="height:3vw;width:3vw;">
+            <img src="{% static 'icons/png/sold.png' %}" style="height:3vw;width:3vw;">
             <h1 style="margin-top:2vh;margin-left: 1vw;">Sell history</h1>
             </div>
        

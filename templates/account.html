@@ -1,12 +1,12 @@
 {% include "navbar.html" %}
-
-<link rel="stylesheet" href="/static/account.css">
+{% load static %}
+<link rel="stylesheet" href="{% static 'account.css' %}">
     <div class="container">
         <div class="head">
             <div class="profile">
                 <div class="person">
                 {% if object.image == "" %}
-            <img src="/static/user.png" id="person" >
+            <img src="{% static 'user.png' %}" id="person" >
             {% else %}
             <img src="/media/{{object.image}}" id="person">
             {% endif %}
@@ -29,7 +29,7 @@
 
             <div class="extras">
                 <div class="reward">
-                    <img src="/static/reward.svg" alt="" id="reward">
+                    <img src="{% static 'reward.svg' %}" alt="" id="reward">
                     <div style="margin-left: 1vw;">
                         <p style="font-family: 'Poppins', sans-serif;">Reward</p>
                         <p style="color:teal;">{{object.reward}}</p>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/signupfinal.css">
+    <link rel="stylesheet" href="{% static 'signupfinal.css' %}">
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lobster+Two&family=Pacifico&family=Patrick+Hand&family=Poppins&display=swap"
         rel="stylesheet">
@@ -15,7 +16,7 @@
 <body>
    
     <div class="screen">
-        <img src="/static/strip.png" alt="" class="strip">
+        <img src="{% static 'strip.png' %}" alt="" class="strip">
         <div class="box">
             <div style="position:absolute;left:56vw;top:14vh" id="error"></div>
             <div class="mid">
