@@ -76,15 +76,18 @@ form {
 .create {
     text-align: center;
 }
-
+.username,.password{
+    position: relative;
+}
 input[type=text],
 input[type=password] {
+   
     width: 100%;
     padding: 6% 0% 6% 15%;
     border-radius: 25px;
     border: transparent;
     outline: 2px solid #57b846;
-    font-size: 1vw;
+   
 }
 
 .head {
@@ -102,13 +105,14 @@ button {
     font-weight: 900;
     color: white;
     background-color: #57b846;
-    font-size: 1vw;
+ 
 }
 
 .forget {
     color: green;
     margin-top: 5%;
-    font-size: 1vw;
+    font-size: 12px;
+ 
 }
 
 .create {
@@ -164,10 +168,49 @@ input[type=password] {
     font-size: 1.5vw;
     display:inline-block;
     position:absolute;
-    top: 37vh;
-    right: 28.5vw;
+    top:2vh;
+    right: 20px;
+
 
 }
-.cross{
-    top:46.3vh;
+
+@media only screen and (max-width: 600px){
+    *{
+        font-size: 12px;
+    }
+    
+    form{
+        margin-left: 18%;
+        width: 70%;
+        height: 80%;
+    }
+    .mid{
+        background-color: white;
+        text-align: center;
+    }
+    .tick,.cross{
+        right: 8px;
+    }
+    input{
+        font-size:12px;
+        height: 40px;
+        padding: 5px;
+    }
+    button{
+        height: 40px;
+    }
+    .head{
+        font-size: 4vw;
+    }
+    .logo{
+        display: block;
+        position: absolute;
+        top: 10%;
+        height: fit-content;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .logo a{
+        font-size: 20px;
+    }
 }

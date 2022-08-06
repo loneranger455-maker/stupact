@@ -91,7 +91,7 @@ input[type=password] {
     border-radius: 25px;
     border: transparent;
     outline: 2px solid #57b846;
-    font-size: 1vw;
+ 
 }
 
 input[type=email] {
@@ -99,7 +99,7 @@ input[type=email] {
     background-size: 15%;
     background-position: 1% 50%;
     background-repeat: no-repeat;
-    font-size: 1vw;
+ 
 }
 
 input[type=text] {
@@ -107,7 +107,7 @@ input[type=text] {
     background-size: 8.5%;
     background-position: 4% 50%;
     background-repeat: no-repeat;
-    font-size: 1vw;
+   
 }
 
 input[type=password] {
@@ -115,7 +115,7 @@ input[type=password] {
     background-size: 8%;
     background-position: 5% 50%;
     background-repeat: no-repeat;
-    font-size: 1vw;
+   
 }
 
 button {
@@ -126,15 +126,14 @@ button {
     font-weight: 900;
     color: white;
     background-color: #57b846;
-    font-size: 1vw;
+    
 }
 
 #a{
-    font-size: 1vw;
+   
 }
 
 #b{
-    font-size: 1vw;
     color:teal;
 }
 
@@ -170,4 +169,44 @@ form span{
     position: absolute;
     right: 0.5vw;
     top: 2vh;
+}
+@media only screen and (max-width: 600px){
+    *{
+        font-size: 12px;
+    }
+    
+    form{
+        margin-left: 18%;
+        width: 70%;
+        height: 80%;
+    }
+    .mid{
+        background-color: white;
+        text-align: center;
+    }
+    .tick,.cross{
+        right: 8px;
+    }
+    input{
+        font-size:12px;
+        height: 40px;
+        padding: 5px;
+    }
+    button{
+        height: 40px;
+    }
+    .head{
+        font-size: 4vw;
+    }
+    .logo{
+        display: block;
+        position: absolute;
+        top: 10%;
+        height: fit-content;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .logo a{
+        font-size: 20px;
+    }
 }

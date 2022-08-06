@@ -39,6 +39,10 @@ def signup(request):
             if username in allobjects1:
                 error="Username already exist"
                 symbol[0]=sym2
+            elif len(username)<5:
+                error="Username must be at least 5 characters long"
+                symbol[0]=sym2
+                symbol[1]=sym1
             elif email[-10:]!="@gmail.com":
                 error="Email format is incorrect"
                 symbol[0]=sym1
@@ -47,10 +51,7 @@ def signup(request):
                 error="User already registered from this email"
                 symbol[0]=sym1
                 symbol[1]=sym2
-            elif len(username)<5:
-                error="Username must be at least 5 characters long"
-                symbol[0]=sym2
-                symbol[1]=sym1
+            
            
             elif len(password)<8:
                 error="Password must be at least 8 characters long"
@@ -74,7 +75,7 @@ def signup(request):
                 return redirect("/login")
         except:
             pass
-
+        messages.add_message(request, messages.ERROR,error)
         data={
             "error":error,
             "username":username,

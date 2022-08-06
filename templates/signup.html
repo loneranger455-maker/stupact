@@ -14,11 +14,22 @@
 </head>
 
 <body>
-   
+    <div id="error" style="position:absolute;top:0px;width:100%;">
+        {% if messages %}
+        {% for i in messages %}
+        {% if i.tags == "success" %}
+        <div style="background-color:green;width: 100%;text-align: center;color: white;">{{i}}</div>
+        {% else %}
+        <div style="background-color:red;width: 100%;text-align:center;color: white;">{{i}}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        </div>
+    <div style="position:absolute;left:56vw;top:14vh" id="error"></div>
     <div class="screen">
         <img src="{% static 'strip.png' %}" alt="" class="strip">
         <div class="box">
-            <div style="position:absolute;left:56vw;top:14vh" id="error"></div>
+            
             <div class="mid">
                 <div class=" logo">
                     <p class="text">
@@ -53,13 +64,9 @@
     </div>
 </body>
 <script>
-    var val1=document.createElement("p");
-    var text=document.createTextNode("{{error}}");
-    
-    val1.appendChild(text);
-    val1.setAttribute("class","err");
-    document.getElementById("error").appendChild(val1)
-    setTimeout(() => {  
+      setTimeout(() => {
+        if({{error}} == 'success')  
+        $("#error").css("background-color","green")
         document.getElementById("error").innerHTML=""
      }, 4000);
   
