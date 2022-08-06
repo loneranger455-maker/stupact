@@ -180,7 +180,7 @@ input[type=password] {
     }
     
     form{
-        margin-left: 18%;
+        margin-left: 15%;
         width: 70%;
         height: 80%;
     }
@@ -193,7 +193,7 @@ input[type=password] {
     }
     input{
         font-size:12px;
-        height: 40px;
+        height: 50px;
         padding: 5px;
     }
     button{
@@ -210,10 +210,18 @@ input[type=password] {
         background-color: transparent;
         box-shadow: none;
     }
+    .logo p{
+        margin: 15px;
+        margin-left:40%;
+    }
     .logo a{
         font-size: 20px;
     }
     .box{
         height: 80%;
+        width: 90%;
+    }
+    .strip{
+        left: 13%;
     }
 }
