@@ -213,4 +213,7 @@ input[type=password] {
     .logo a{
         font-size: 20px;
     }
+    .screen{
+        height: 94vh;
+    }
 }
