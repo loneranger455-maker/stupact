@@ -106,3 +106,28 @@ width: 27vw;
     width: 20vw;
     height: 20vw;
 }
+@media only screen and (max-width:600px) {
+    .container{
+        flex-direction: column;
+
+    }
+    .boxes{
+        width: 86vw;
+        margin-bottom: 5vh;
+    }
+    .boxes button{
+        width: 40%;
+    }
+    .body_part p{
+        font-size: 20px;
+    }
+    #smalldetail{
+        font-size: 20px;
+    }
+    .body_part h1{
+        font-size: 25px;
+    }
+    .image{
+        display: none;
+    }
+}

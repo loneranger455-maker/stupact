@@ -47,11 +47,12 @@
     
     <header>
         <nav>
+            <button id="showmenu" aria-control="center" onclick="togglenavbar()" ><i class="fa fa-bars" style="color:black;font-size:30px"></i></button>
             <div id="left">
                 <span style="color:purple;">Stu</span>
                 <span style="color:teal;">PACT</span>
             </div>
-            <div id="center">
+            <div id="center" data-visible="false">
                 <a  href="{% url 'home' %}" class= {% if request.path == "/home/" %}"activate" {% else %} "normal" {% endif %}>Home</a>
                 <a href="{% url 'servicestab' %}" class={% if request.path == "/services/" %}"activate" {% else %} "normal"{% endif %}>Services</a>
                 <a href="{% url 'stumart' %}" class={% if request.path == "/stumart" or stucheck == "true" %}"activate" {% else %} "normal"{% endif %}>StuMART</a>
@@ -62,8 +63,8 @@
                 <a href="{% url 'contact' %}" id="contact">
                     Contact
                 </a>
-               <button  style="display: flex;justify-content: center;align-items: center;"id="notified" onclick="shownotification()">
-                <img style="height:30px;width:30px;" src="{% static 'icons/notification-bell-5743.png' %}">
+               <button  data-visible="false" style="display: flex;justify-content: center;align-items: center;"id="notified" onclick="shownotification()">
+                <img id="notificationbell" style="height:30px;width:30px;" src="{% static 'icons/notification-bell-5743.png' %}">
                 <p id="unseen"></p>
             </button> 
                 <img src={{request.session.image}} style="border-radius:50%;height:30px;width:30px;"
@@ -77,6 +78,7 @@
     <script>
         var array=[]
         var count=0
+        var check=true
          setInterval(function () {
     $.ajax({
         type: 'GET',
@@ -97,13 +99,13 @@
            document.getElementById("notified").appendChild(elm);}
         }          
     })},5000)
-        checker=true
+      
         function shownotification(){
-    console.log("clicked")
-    document.getElementById("container").innerHTML=""
-    if(checker){
+            document.getElementById("container").innerHTML=""
+            if (check){
+                check=false;
+           
     var element1=document.createElement('div')
-    checker=false
     element1.setAttribute("class","notification")
     $.ajax({
         type: 'GET',
@@ -130,11 +132,38 @@
 
             
     })
+            
     
-    document.getElementById("container").appendChild(element1)}
-    else{
-        checker=true
+   
+    
+        document.getElementById("container").appendChild(element1)}
+        else{
+            check=true
+        }
+//     if(document.getElementById("notified").getAttribute("data-visible")=="false"){
+//    }
+//     else{
+//         document.getElementById("notified").setAttribute("data-visible","false")
+//         document.getElementById("container").innerHTML=""
+//     }
+}
+window.addEventListener("mouseup",(event)=>{
+notification=document.getElementsByClassName("notification")[0]
+notified=document.getElementById("notificationbell")
+if(event.target!=notification && event.target.parentNode!=notification && event.target!=notified){
+    document.getElementById("container").innerHTML=""
+    check=true
+    
+}
+})
+function togglenavbar(){
+    const center=document.getElementById("center")
+    visibility=center.getAttribute('data-visible')
+    if(visibility=="true"){
+        center.setAttribute('data-visible',"false")
     }
+    else
+     center.setAttribute('data-visible',"true")
 }
     </script>
    

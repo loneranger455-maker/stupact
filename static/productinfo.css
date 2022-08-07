@@ -1,9 +1,14 @@
 .left{
     width: 30%;
     height: 50%;
-    
+    display: flex;
+}
+#details{
+    height:12vh;overflow-y:auto;width:35vw;
 }
 .infobox{
+    display:flex;width:88vw;position: relative;
+    justify-content: space-between;
     margin-top: 4%;
     margin-left: 6vw;
 }
@@ -13,4 +18,50 @@
 #details2>h3{
     font-size: 30px;
     
+}
+#info{
+    margin-left: 50px;
+}
+.left img{
+    height: 20vw;
+    width: 20vw;
+}
+#sellerverify{
+   
+width:15vw;background-color:rgba(255, 255, 255, 0.281);border-radius: 12px;height: 20vw;
+}
+@media only screen and (max-width:600px) {
+    
+.left{
+   
+  
+
+}
+.infobox{
+    background-color: wheat;
+    flex-direction: column;
+    height: 150vh;
+    justify-content: flex-start;
+}
+#details{
+    width: 60vw;
+    
+}
+.left{
+    flex-direction: column;
+}
+.left img{
+    margin-left: 10vw;
+    width: 20rem;
+    height: 20rem;
+}
+.left button{
+    width: 50vw;
+}
+#sellerverify{
+    margin-top:50%;
+    width: 80vw;
+    margin-left: 6vw;
+
+}
 }
