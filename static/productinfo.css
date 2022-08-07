@@ -3,7 +3,7 @@
     height: 50%;
     display: flex;
 }
-#details{
+#detailsa{
     height:12vh;overflow-y:auto;width:35vw;
 }
 .infobox{
@@ -28,7 +28,7 @@
 }
 #sellerverify{
    
-width:15vw;background-color:rgba(255, 255, 255, 0.281);border-radius: 12px;height: 20vw;
+width:20vw;background-color:rgba(255, 255, 255, 0.281);border-radius: 12px;height: 20vw;
 }
 @media only screen and (max-width:600px) {
     
@@ -43,7 +43,7 @@ width:15vw;background-color:rgba(255, 255, 255, 0.281);border-radius: 12px;heigh
     height: 150vh;
     justify-content: flex-start;
 }
-#details{
+#detailsa{
     width: 60vw;
     
 }
