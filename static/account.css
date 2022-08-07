@@ -258,7 +258,7 @@ input[type=password]::placeholder{
     border-radius: 12px;
     align-content: center;
     border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
+    width: 80%; /* Could be more or less, depending on screen size */
   }
   .modal-content button{
     margin-top: 4vh;
@@ -308,4 +308,43 @@ input[type=password]::placeholder{
   }
   .modallogout::backdrop{
     backdrop-filter: blur(1.5px);
+  }
+  @media only screen and (max-width:600px) {
+    .a{
+        font-size: 20px;
+    }
+    .a+p{
+        font-size: 17px;
+    }
+    body{
+        
+        overflow-y: auto;
+    }
+    .body{
+        width: 100vw;
+        flex-direction: column;
+        height: 200vh;
+    }
+    .info{
+        margin-top: 20px;
+        width: 70%;
+        height: 110vh;
+    }
+    .main button{
+        width: 70vw;
+        font-size: 20px;
+    }
+    #modal{
+        width: 80vw;
+        left: 10vw;
+    }
+    #modal form{
+        width: 80vw;
+    }
+    #modal form input{
+        width:60vw;
+    }
+    .modal-content{
+        width: 80%;
+    }
   }

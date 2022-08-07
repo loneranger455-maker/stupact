@@ -12,7 +12,7 @@
             {% endif %}
                 </div>
                 <div class="mininfo" style="position:relative;">
-                    <div style="display:flex;"><p style="margin-bottom:2%;margin-right:0.5vw;font-size: 2vw;font-family: 'DM Serif Text', serif;">{{object.username}}</p>
+                    <div style="display:flex;"><p style="margin-bottom:2%;margin-right:0.5vw;font-size:25px;font-family: 'Poppins', sans-serif;">{{object.username}}</p>
                     {% if object.verified == False %}<button style="padding:1vh 0.8vw;border:0px;border-radius:12px;height: 5vh;" onclick="verify()">Verify account</button>{% else %} 
                     <i id="verifyclose" class="material-icons" style="font-size:24px;color:blue;">verified_user</i>
                 {% endif %}    
