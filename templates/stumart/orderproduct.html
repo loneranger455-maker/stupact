@@ -50,11 +50,11 @@
             <h2 style="margin-top:2.5vh;margin-left: 2vw;font-family:Gentium Book Plus;font-weight: 550;">Payment Method:</h2>
         <div style="margin-top:0.25vh;">
             <input type="radio"  name="payment" value="esewa">
-        <img style="height:2.5vw;width:10vw;margin: 0.3vh 0 0.3vh 0;" src="{% static 'eSewa-logo.png' %}">
+        <img id="esewa" style="" src="{% static 'eSewa-logo.png' %}">
         </div>
         <div>
         <input type="radio"  name="payment" value="cod">
-        <img style="height:3vw;width:8vw" src="{% static 'cashondelivery.jpg' %}">
+        <img  id="cod" style="" src="{% static 'cashondelivery.jpg' %}">
         </div>
         
 
@@ -78,7 +78,7 @@
                 </div>
                 
                 <div id="product" style="height: 100%;width: 50%;" >
-                <img style="margin-top: 2vh; height:8vw;width:8vw;border-radius:12px 12px 0px 0px;display: inline-block;" src="/media/{{object.image}}">
+                <img style="" src="/media/{{object.image}}">
                 <div id="details2">
                <h3>{{object.title}}</h3>
                 </div>

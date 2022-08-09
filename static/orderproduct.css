@@ -32,6 +32,14 @@ body{
     grid-template-columns: 20vw 20vw;
    
     }
+    .right-div{
+        display: flex;
+        flex-direction: column;
+
+    }
+    #product img{
+        margin-top: 2vh; height:8vw;width:8vw;border-radius:12px 12px 0px 0px;display: inline-block;
+    }
     .innergrid > input,select{
        
         /* font-family: Kdam Thmor Pro; */
@@ -77,6 +85,8 @@ body{
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        height: 100%;
     
     }
     #itemselected{
@@ -117,14 +127,20 @@ body{
     .totalcost span{
         float: right;
     }
+    #esewa{
+        height:2.2rem;width:7rem;margin: 0.3vh 0 0.3vh 0;
+    }
+    #cod{
+        height:2.6rem;width:6rem;
+    }
     .totalcost p{
         display: inline;
         margin-top: 2vh;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 2vw;
+        font-size: 1.6rem;
     }
     .totalcost span{
-        font-size: 1.8vw;
+        font-size: 1.6rem;
     }
     .paymethod{
         display: flex;
@@ -153,3 +169,50 @@ body{
       position: relative;
       top: 1.5vh;
     }
+@media only screen and (max-width:600px) {
+    body{
+        overflow: auto;
+    }
+    .left-div{
+        width: 100%;
+    }
+    .order{
+        flex-direction: column-reverse;
+    }
+    .innergrid{
+        grid-template-columns: 45vw 45vw
+    }
+    .paymethod{
+        width: 90vw;
+    }
+
+    .right-div div{
+
+        width: 80%;
+    }
+    .innergrid > input,select{
+        font-size: 1rem;
+    }
+    
+#itemselected button{
+    width:20vw;
+}      
+    .totalcost{
+        width: 80vw;
+    }
+    .totalcost div{
+        width: 100%;
+
+    }
+    .singleitem{
+        width: 80vw;
+        padding: 20px;
+    }
+    #product img{
+        height: 70%;
+        width: 70%;
+    }
+    #esewa{
+        width: 5em;
+    }
+}
