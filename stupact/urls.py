@@ -47,7 +47,8 @@ urlpatterns = [
     path('adminpanel/',views2.adminstart),
     path('adminpanel/<str:menuvalue>',views2.adminpanel,name="adminpanel"),
     path('adminpanel/verify/<int:value>/<str:username>',views2.verifycontrol,name="verifycontrol"),
-    path('adminpanel/order/<int:value>/<str:productid>',views2.ordercontrol,name="ordercontrol")
+    path('adminpanel/order/<int:value>/<str:productid>',views2.ordercontrol,name="ordercontrol"),
+    path('adminpanel/messages/<uuid:msgid>',views2.deletemessages,name="deletemessage")
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

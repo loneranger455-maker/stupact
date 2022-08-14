@@ -6,6 +6,14 @@ from statistics import mode
 from unittest.util import _MAX_LENGTH
 from django.db import models
 import uuid
+MESSAGE_SUBJECT = (
+    ('User Experience','User Experience'),
+    ('Bad Service', 'Bad Service'),
+    ('Scam','Scam'),
+    ('Feedbacks','Feedbacks'),
+    ('Other','Other'),
+)
+
 class mymodel(models.Model):
     first_name=models.CharField(max_length=30,blank=True)
     last_name=models.CharField(max_length=30,blank=True)
@@ -54,7 +62,9 @@ class verifyrequest(models.Model):
     username=models.CharField(max_length=30)
     filevalue=models.FileField(upload_to="verify/")
 
-# class queries(model.Model):
-#     username=models.CharField(max_length=30)
-#     message=models.TextField()
-#     subject=models.CharField(max_length=30)
+class queries(models.Model):
+    id=models.UUIDField(primary_key=True,default=uuid.uuid4)
+    username=models.CharField(max_length=30)
+    email=models.EmailField(max_length=30,blank=True)
+    message=models.TextField()
+    subject=models.CharField(max_length=30,choices=MESSAGE_SUBJECT,default="User Experience")

@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 import os
+from django.core.paginator import Paginator
 from pathlib import Path
-from .models import verifyrequest,mymodel,notifications,order_list,stumartmodel
+from .models import verifyrequest,mymodel,notifications,order_list,stumartmodel,queries
 # Create your views here.
 
         # if len(title)<3 
@@ -20,7 +21,13 @@ def adminpanel(request,menuvalue):
                 return render(request,"admin/order.html",{"objects":allobjects,"page":2})
         elif menuvalue=="allusers":
                 allobjects=mymodel.objects.all()
-                return render(request,"admin/users.html",{"objects":allobjects,"page":0})
+                paginate=Paginator(allobjects,9)
+                pageno=request.GET.get("page")
+                page=paginate.get_page(pageno)  
+                return render(request,"admin/users.html",{"objects":page,"page":0,"count":range(1,paginate.num_pages+1)})
+        elif menuvalue=="messageslist":
+                allobjects=queries.objects.all()
+                return render(request,"admin/messages.html",{"objects":allobjects,"page":3})
 
 def verifycontrol(request,value,username):
         objectget=verifyrequest.objects.get(username=username)
@@ -62,4 +69,11 @@ def ordercontrol(request,value,productid):
                 stumodal.verify=False
                 stumodal.save()
         return redirect("/adminpanel/orderlist")
+
+def deletemessages(request,msgid):
+        messageget=queries.objects.get(id=msgid)
+        messageget.delete()
+        return redirect("/adminpanel/messageslist")
+
+
         

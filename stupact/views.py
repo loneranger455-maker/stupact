@@ -5,7 +5,7 @@ from django.http import HttpResponse,JsonResponse
 from django.shortcuts import redirect, render
 from requests import delete, session
 from dataforstupact.models import mymodel
-from dataforstupact.models import stumartmodel,order_list,notifications,verifyrequest
+from dataforstupact.models import stumartmodel,order_list,notifications,verifyrequest,queries
 from dataforstupact.forms import register_as_tutor
 import requests,os,random
 from django.contrib import messages
@@ -477,7 +477,6 @@ def changepassword(request):
     error=""
     symbol=["","",""]
     current=request.GET["current"]
-    print(current)
     new=request.GET["new"]
     confirm=request.GET["confirm"]
     if allobjects.password!=current:
@@ -524,9 +523,10 @@ def searchbycategory(request,category):
     data=list()
     if request.method=="POST":
         value=request.POST.get("search")
-        allobj=[i.title for i in variable]
-        allobj2=[i for i in allobj if i[0:len(value)]==value]
-        variable=[i for i in variable if i.title in allobj2 ]
+        # allobj=[(i.title).upper() for i in variable]
+        # allobj2=[i.upper() for i in allobj if i[0:len(value)]==value.upper()]
+        # variable=[i for i in variable if (i.title).upper() in allobj2 ]
+        variable=[i for i in variable if value.upper() in i.title.upper()]
     if category=="all":
         return redirect("/stumart")
     for i in variable:
@@ -576,10 +576,20 @@ def verify(request):
     return JsonResponse(data)
 
 def contact(request):
-    # if request.method == POST:
-    #     username=request.POST.get("username")
-    #     phoneno=request.POST.get("phonenumber")
-    #     email=request.POST.get("email")
-    #     subject=request.POST.get("subject")
-    #     message=request.POST.get("message")
+    if request.method == "POST":
+        email=request.POST.get("email")
+        subject=request.POST.get("subject")
+        message=request.POST.get("message")
+        if email[-10:]!="@gmail.com":
+                error="Email format is incorrect"
+                messages.add_message(request, messages.ERROR,error)
+        elif len(message)<10:
+            error="Please enter a valid message"
+            messages.add_message(request, messages.ERROR,error)
+        else:
+            queries(email=email,subject=subject,message=message,username=request.session["Username"]).save()
+            error="Message sent sucessfully"
+            messages.add_message(request, messages.SUCCESS,error)
+            notifications(username=request.session["Username"],notify="Thank you your feedbacks and queries.Keep helping us growing.",status="unseen").save()
+       
     return render(request, "contact.html")

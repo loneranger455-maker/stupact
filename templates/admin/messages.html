@@ -1,0 +1,24 @@
+{% extends "admin/adminpanel.html" %}
+
+{% block verify %}
+<div>
+    <div class="gridlayout" style=" grid-template-columns:12vw 18vw 30vw 10vw ;width: 98%;" id="title">
+        <p>Username</p>
+        <p>Email</p>
+        <p>Message</p>
+        <p>tools</p>
+        
+    </div>
+    <div class="gridlayout" style=" grid-template-columns:12vw 18vw 30vw 10vw ;width: 98%;" id="data">
+    {% for i in objects %}
+        <p>{{i.username}}</p>
+        <p>{{i.email}}</p>
+        <p>{{i.message}}</p>
+        <p class="buttonslist">
+            <button
+            onclick="location.href='{% url 'deletemessage' msgid=i.id %}'"
+            ><i class="material-icons">delete_forever</i>Decline</button></p>
+   {% endfor %}
+    </div>
+</div>
+{% endblock %}

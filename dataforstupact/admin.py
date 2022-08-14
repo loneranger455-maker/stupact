@@ -1,6 +1,6 @@
 import imp
 from django.contrib import admin
-from dataforstupact.models import mymodel,stumartmodel,order_list,notifications,verifyrequest
+from dataforstupact.models import mymodel,stumartmodel,order_list,notifications,verifyrequest,queries
 # Register your models here.
 class serviceadmin(admin.ModelAdmin):
     list_display=("username","password")
@@ -12,8 +12,11 @@ class notify_class(admin.ModelAdmin):
     list_display=("username","notify","status")
 class verify_class(admin.ModelAdmin):
     list_display=("username","filevalue")
+class queries_class(admin.ModelAdmin):
+    list_display=("username","subject")
 admin.site.register(mymodel,serviceadmin)
 admin.site.register(stumartmodel,stumart_class)
 admin.site.register(order_list,order_class)
 admin.site.register(notifications,notify_class)
 admin.site.register(verifyrequest,verify_class)
+admin.site.register(queries,queries_class)
